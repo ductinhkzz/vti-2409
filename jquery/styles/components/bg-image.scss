@@ -1,0 +1,47 @@
+$img: 'https://cdnv2.tgdd.vn/webmwg/2024/tz/images/icon-topzone.webp';
+
+.bg_img {
+  background-image: url($img);
+  background-repeat: no-repeat;
+  display: inline-block;
+  line-height: 30px;
+  vertical-align: middle;
+  background-size: 514px 226px;
+
+  &--main_logo {
+    width: 103px;
+    height: 35px;
+    background-position: 0 0;
+  }
+
+  &--author_logo {
+    width: 32px;
+    height: 40px;
+    background-image: url('https://cdnv2.tgdd.vn/webmwg/2024/tz/images/APR_logo.webp');
+    background-size: 100%;
+  }
+
+  &--home_diver {
+    background-position: -264px -3px;
+    width: 35px;
+    height: 34px;
+  }
+
+  &--home_delivery {
+    background-position: -306px -4px;
+    width: 39px;
+    height: 32px;
+  }
+
+  &--home_insurance {
+    background-position: -356px -2px;
+    width: 29px;
+    height: 36px;
+  }
+
+  &--home_return {
+    background-position: -396px -4px;
+    width: 36px;
+    height: 32px;
+  }
+}
