@@ -30,6 +30,12 @@
       ],
       "type": "media",
       "multiple": false
+    },
+    "collection": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::collection.collection",
+      "inversedBy": "categories"
     }
   }
 }

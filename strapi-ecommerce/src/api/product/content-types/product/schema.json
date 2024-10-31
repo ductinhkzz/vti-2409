@@ -1,5 +1,5 @@
 {
-  "kind": "singleType",
+  "kind": "collectionType",
   "collectionName": "products",
   "info": {
     "singularName": "product",
@@ -8,7 +8,7 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
@@ -17,20 +17,6 @@
     },
     "description": {
       "type": "string"
-    },
-    "cost": {
-      "type": "integer"
-    },
-    "images": {
-      "type": "media",
-      "multiple": true,
-      "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
     },
     "thumbnail": {
       "type": "media",
@@ -43,15 +29,22 @@
         "audios"
       ]
     },
-    "manufacturer": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::manufacturer.manufacturer"
-    },
     "category": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::category.category"
+    },
+    "variants": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::variant.variant",
+      "mappedBy": "product"
+    },
+    "product_variants": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product-variant.product-variant",
+      "mappedBy": "product"
     }
   }
 }
