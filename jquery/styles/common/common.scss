@@ -1,0 +1,17 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#main {
+  height: calc(100vh - $header-height);
+}
+
+.form-check-input,
+.form-control {
+  &:focus {
+    box-shadow: none;
+  }
+}

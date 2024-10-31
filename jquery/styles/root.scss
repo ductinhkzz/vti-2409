@@ -1,4 +1,10 @@
-@import './utility.scss';
+//Base
+@import './common/utility.scss';
+@import './common/common.scss';
+// Layouts
+@import './layouts/header.scss';
+
+// Components
 @import './components/bg-image.scss';
 @import './components/slider.scss';
 @import './components/list.scss';
