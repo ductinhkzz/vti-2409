@@ -45,3 +45,31 @@ $img: 'https://cdnv2.tgdd.vn/webmwg/2024/tz/images/icon-topzone.webp';
     height: 32px;
   }
 }
+
+*[class^='iconsocial-'],
+*[class*='iconsocial-'] {
+  background-image: url(//cdnv2.tgdd.vn/webmwg/2024/tz/images/common/icon_socical.webp);
+  background-repeat: no-repeat;
+  display: inline-block;
+  line-height: 30px;
+  vertical-align: middle;
+  background-size: 120px 90px;
+}
+
+.iconsocial-facebook {
+  background-position: -45px 0;
+  width: 33px;
+  height: 33px;
+}
+
+.iconsocial-youtube {
+  background-position: 0 0;
+  width: 33px;
+  height: 33px;
+}
+
+.iconsocial-zalo {
+  background-position: -85px 0;
+  width: 33px;
+  height: 33px;
+}
