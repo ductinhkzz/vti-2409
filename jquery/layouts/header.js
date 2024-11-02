@@ -47,4 +47,21 @@ $(document).ready(function () {
       }
     },
   });
+
+  const user = JSON.parse(localStorage.getItem('userData'));
+  const navActions = $('#nav-actions')
+  if (user) {
+    loginRegisterBtn.hide();
+    navActions.append(`
+      <span class="text-white d-flex align-items-center me-2">${user.username}</span>  
+      <button id="logout-btn" type="button" class="btn btn-outline-light btn-sm">Logout</button>
+    `)
+  } else {
+    loginRegisterBtn.show();
+  }
+
+  $('#logout-btn').click(function() {
+    localStorage.clear();
+    location.href = '/jquery/index.html';
+  })
 });
