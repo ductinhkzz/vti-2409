@@ -39,10 +39,26 @@ $(document).ready(function () {
             <section class="container my-5 py-2" id="${item.documentId}">
             </section>
           `);
-
-          $(`#${item.documentId}`).load('sessions/collection.html', function () {
-            $(`#${item.documentId} ul`).before(`<h1 class="text-center text-white my-5 fs-3">${item.name}</h1>`);
-          });
+          $(`#${item.documentId}`).append(`<ul class="row list"></ul>`)
+          $(`#${item.documentId} ul`).before(`<h1 class="text-center text-white my-5 fs-3">${item.name}</h1>`);
+          $.ajax({
+            url: `http://localhost:1337/api/products?filters[category][collection][documentId][$eq]=${item.documentId}&populate[0]=category&populate[1]=category.collection&populate[2]=thumbnail&pagination[pageSize]=4`,
+            success: function (result) {
+              const data = result.data;
+              data.forEach(product => {
+                $(`#${item.documentId} ul`).append(`
+                   <li class="col-3">
+                    <a href="#" class="d-flex flex-column rounded-4 align-items-center text-white text-decoration-none p-2">
+                      <div class="py-2">
+                        <img src="http://localhost:1337/${product.thumbnail.url}" alt="" />
+                      </div>
+                      <span class="p-2">${product.name}</span>
+                    </a>
+                  </li>
+                `)
+              })
+            },
+          })
         }
       }
     },

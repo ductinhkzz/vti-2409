@@ -601,6 +601,7 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     name: Schema.Attribute.String;
+    price: Schema.Attribute.BigInteger;
     product_variants: Schema.Attribute.Relation<
       'oneToMany',
       'api::product-variant.product-variant'
