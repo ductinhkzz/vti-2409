@@ -5,3 +5,11 @@
   z-index: 1;
   height: $header-height;
 }
+
+@media (min-width: 992px) {
+  .navbar-expand-lg {
+    .navbar-collapse {
+      padding: 0 !important;
+    }
+  } 
+}
