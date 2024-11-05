@@ -1,6 +1,9 @@
 $(document).ready(function () {
   $("#header").load("layouts/header.html");
 
+  /**
+   * Handle form submit
+   */
   $('#form-register').submit(function (e) {
     e.preventDefault();
     const formArray = $(this).serializeArray();
