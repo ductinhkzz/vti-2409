@@ -7,6 +7,26 @@ const formattedNumber = function (number) {
   }).format(number);
 };
 
+function addProduct(product) {
+  const products = JSON.parse(localStorage.getItem('products')) ?? [];
+  const currentProduct = products.find((p) => product.documentId === p.documentId);
+
+  if (!currentProduct) {
+    const newProduct = Object.assign(product, { count: 1 });
+    const newProducts = products.concat([newProduct]);
+    localStorage.setItem('products', JSON.stringify(newProducts));
+    return;
+  }
+
+  for (let i = 0; i < products.length; i++) {
+    if (products[i].documentId === product.documentId) {
+      products[i].count++;
+    }
+  }
+
+  localStorage.setItem('products', JSON.stringify(products));
+}
+
 $(document).ready(function () {
   const loginRegisterBtn = $('#login-register');
   if (location.pathname.includes('login.html')) {
@@ -18,6 +38,39 @@ $(document).ready(function () {
   const collectionSessionList = $('#colection-list');
   const collectionSession = $('#collection-session ul');
 
+  function renderProductCart() {
+    $('#product-cart').empty();
+    const products = JSON.parse(localStorage.getItem('products')) ?? [];
+    let totalCost = 0
+    for (const product of products) {
+      $('#product-cart').append(`
+        <li class="list-group-item">
+          <div class="d-flex gap-1">
+             <img src="http://localhost:1337/${product.thumbnail.url}" alt="" width="80" class="p-2" />
+             <div class="d-flex flex-column justify-content-center overflow-hidden">
+              <span class="fs-5 fw-bold text-truncate">${product.name}</span>
+              <span>${formattedNumber(product.price)}</span>
+             </div>
+             <div class="d-flex align-items-center fs-5 text-nowrap ms-auto">
+                x ${product.count}
+             </div>
+          </div>
+        </li>
+      `)
+
+      totalCost += product.price * product.count;
+    }
+
+    $('#product-cart').append(`
+        <li class="list-group-item">
+          <div class="d-flex">
+            <span class="fs-5 fw-bold">Total:</span>
+            <span class="ms-2">${formattedNumber(totalCost)}</span>
+          </div>
+        </li>
+    `)
+  }
+  renderProductCart()
   $.ajax({
     url: `http://localhost:1337/api/collections?populate=*`,
     success: function (result) {
@@ -56,7 +109,7 @@ $(document).ready(function () {
               const data = result.data;
               data.forEach((product) => {
                 $(`#${item.documentId} ul`).append(`
-                   <li class="col-3 d-flex">
+                   <li class="col-3 d-flex" id="${product.documentId}">
                     <a href="#" class="d-flex flex-column rounded-4 align-items-center text-white text-decoration-none px-2 py-4 w-100">
                       <div class="py-2">
                         <img src="http://localhost:1337/${product.thumbnail.url}" alt="" />
@@ -66,6 +119,12 @@ $(document).ready(function () {
                     </a>
                   </li>
                 `);
+
+                $(`#${product.documentId}`).click(function (e) {
+                  e.preventDefault();
+                  addProduct(product);
+                  renderProductCart();
+                });
               });
             },
           });
