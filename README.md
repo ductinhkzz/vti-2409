@@ -1,7 +1,7 @@
 # Ecommerce project
 
 - PNPM monorepo
-- React
+- React (Shadcn lib)
 - Strapi
 
 # Install

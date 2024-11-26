@@ -1,6 +1,7 @@
-import bannerImg from '@/assets/images/banner.jpg';
-import { BigLogoIcon, Button } from '@/components';
 import { CircleChevronRight } from 'lucide-react';
+
+import { BigLogoIcon, Button } from '@/components';
+import bannerImg from '@/assets/images/banner.jpg';
 
 const Banner = () => {
   return (
