@@ -1,13 +1,7 @@
-import { Button } from '@/components';
 import { Banner } from './components';
 
 const Home = () => {
-  return (
-    <>
-      <Banner />
-      <Button>Test</Button>
-    </>
-  );
+  return <Banner />;
 };
 
 export default Home;

@@ -1,11 +1,11 @@
 import MainNav from './MainNav';
+import SubNav from './SubNav';
 
 const Header = () => {
   return (
-    <header className='sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 dark:border-border flex justify-center'>
-      <div className='container flex h-14 items-center px-4 w-full justify-center'>
-        <MainNav />
-      </div>
+    <header className='sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 flex justify-center shadow flex-col items-center'>
+      <MainNav />
+      <SubNav />
     </header>
   );
 };

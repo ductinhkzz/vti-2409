@@ -14,3 +14,8 @@
 pnpm install
 pnpm run dev
 ```
+
+# Admin account
+
+- Email: admin@gmail.com
+- Password: Vti@2024

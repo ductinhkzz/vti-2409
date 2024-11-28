@@ -12,7 +12,7 @@
   "author": "Duc Tinh Le",
   "license": "ISC",
   "engines": {
-    "node": ">=22.1.0"
+    "node": ">=20.x.x"
   },
   "type": "module",
   "devDependencies": {
