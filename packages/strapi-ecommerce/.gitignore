@@ -128,3 +128,4 @@ build
 .strapi-updater.json
 .strapi-cloud.json
 .tmp/*
+public/uploads/*
