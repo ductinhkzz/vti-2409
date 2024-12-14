@@ -2,14 +2,14 @@ import { createContext } from 'react';
 
 export type Theme = 'dark' | 'light';
 
-export type ThemeProviderState = {
+export type ThemeContextState = {
   theme: Theme;
   setTheme: (theme: Theme) => void;
 };
 
-const initialState: ThemeProviderState = {
+const initialState: ThemeContextState = {
   theme: 'light',
   setTheme: () => null,
 };
 
-export const ThemeProviderContext = createContext<ThemeProviderState>(initialState);
+export const ThemeContext = createContext<ThemeContextState>(initialState);

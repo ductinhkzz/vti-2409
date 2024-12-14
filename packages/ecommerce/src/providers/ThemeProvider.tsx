@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 
-import { Theme, ThemeProviderContext } from '@/contexts';
+import { Theme, ThemeContext } from '@/contexts';
 import { THEME_STORAGE_KEY } from '@/constants';
 
 type ThemeProviderProps = {
@@ -32,5 +32,5 @@ export const ThemeProvider = ({ children, defaultTheme = systemTheme }: ThemePro
     [theme],
   );
 
-  return <ThemeProviderContext.Provider value={value}>{children}</ThemeProviderContext.Provider>;
+  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
 };

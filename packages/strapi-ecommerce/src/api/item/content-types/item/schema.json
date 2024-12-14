@@ -1,0 +1,62 @@
+{
+  "kind": "collectionType",
+  "collectionName": "items",
+  "info": {
+    "singularName": "item",
+    "pluralName": "items",
+    "displayName": "item",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "subTitle": {
+      "type": "text"
+    },
+    "heading": {
+      "type": "string"
+    },
+    "textColor": {
+      "type": "string"
+    },
+    "textPosition": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "blocks": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::block.block",
+      "mappedBy": "items"
+    },
+    "eyeBrow": {
+      "type": "string"
+    },
+    "body": {
+      "type": "text"
+    },
+    "type": {
+      "type": "string"
+    },
+    "link": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.link"
+    }
+  }
+}

@@ -10,9 +10,9 @@ const SubNav = () => {
   const toggleTheme = () => setTheme(theme === 'dark' ? 'light' : 'dark');
 
   return (
-    <div className='w-full h- flex justify-center bg-black border-y border-t-0'>
+    <div className='w-full h-12 flex justify-center bg-black border-y border-t-0'>
       <div className='max-w-5xl px-4 py-2 w-full'>
-        <div className='hidden md:flex justify-end w-full'>
+        <div className='flex justify-end w-full'>
           <nav className='flex items-center text-sm justify-between'>
             <Button size='sm' className='bg-black dark:text-white'>
               <ShoppingCart /> Cart
