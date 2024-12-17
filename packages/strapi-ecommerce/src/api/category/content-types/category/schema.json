@@ -22,20 +22,33 @@
       "type": "text"
     },
     "media": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
-    "collection": {
+    "topBlocks": {
       "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::collection.collection",
+      "relation": "manyToMany",
+      "target": "api::block.block",
       "inversedBy": "categories"
+    },
+    "bottomBlocks": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::block.block",
+      "inversedBy": "categories"
+    },
+    "products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product.product",
+      "mappedBy": "category"
     }
   }
 }

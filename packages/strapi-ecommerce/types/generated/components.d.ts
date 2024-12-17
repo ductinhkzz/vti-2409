@@ -25,6 +25,18 @@ export interface SharedMedia extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedProductBanner extends Struct.ComponentSchema {
+  collectionName: 'components_shared_product_banners';
+  info: {
+    displayName: 'Product Banner';
+  };
+  attributes: {
+    body: Schema.Attribute.String;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface SharedQuote extends Struct.ComponentSchema {
   collectionName: 'components_shared_quotes';
   info: {
@@ -54,6 +66,7 @@ declare module '@strapi/strapi' {
     export interface ComponentSchemas {
       'shared.link': SharedLink;
       'shared.media': SharedMedia;
+      'shared.product-banner': SharedProductBanner;
       'shared.quote': SharedQuote;
       'shared.rich-text': SharedRichText;
     }

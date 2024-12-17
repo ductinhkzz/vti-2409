@@ -47,13 +47,15 @@ const LazyImage = ({ image, className, containerClass, useView }: Props) => {
               media='(min-width:1024px)'
             />
           )}
-          <source
-            srcSet={getMediaUrl(image.formats.medium.url)}
-            data-srcset={getMediaUrl(image.formats.medium.url)}
-            media='(min-width:640px)'
-          />
+          {image.formats.medium && (
+            <source
+              srcSet={getMediaUrl(image.formats.medium.url)}
+              data-srcset={getMediaUrl(image.formats.medium.url)}
+              media='(min-width:640px)'
+            />
+          )}
           <img
-            src={getMediaUrl(image.formats.small.url)}
+            src={getMediaUrl(image.formats.small?.url ?? image.url)}
             ref={imgRef}
             alt=''
             onLoad={onLoad}

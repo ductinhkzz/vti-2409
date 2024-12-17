@@ -446,6 +446,10 @@ export interface ApiBlockBlock extends Struct.CollectionTypeSchema {
   };
   attributes: {
     body: Schema.Attribute.Text;
+    categories: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::category.category'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -454,6 +458,10 @@ export interface ApiBlockBlock extends Struct.CollectionTypeSchema {
     image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     image1: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     image2: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    images: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
     items: Schema.Attribute.Relation<'manyToMany', 'api::item.item'>;
     link: Schema.Attribute.Component<'shared.link', false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
@@ -462,11 +470,13 @@ export interface ApiBlockBlock extends Struct.CollectionTypeSchema {
     logo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     name: Schema.Attribute.String;
     primaryCTA: Schema.Attribute.Relation<'oneToOne', 'api::cta.cta'>;
+    products: Schema.Attribute.Relation<'manyToMany', 'api::product.product'>;
     publishedAt: Schema.Attribute.DateTime;
     secondaryCTA: Schema.Attribute.Relation<'oneToOne', 'api::cta.cta'>;
     style: Schema.Attribute.String;
     subHeading: Schema.Attribute.String;
     textAlign: Schema.Attribute.String;
+    textAlign2: Schema.Attribute.String;
     theme: Schema.Attribute.String;
     type: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
@@ -490,10 +500,7 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
-    collection: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::collection.collection'
-    >;
+    bottomBlocks: Schema.Attribute.Relation<'manyToMany', 'api::block.block'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -506,43 +513,10 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     media: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     name: Schema.Attribute.String;
+    products: Schema.Attribute.Relation<'oneToMany', 'api::product.product'>;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiCollectionCollection extends Struct.CollectionTypeSchema {
-  collectionName: 'collections';
-  info: {
-    description: '';
-    displayName: 'Collection';
-    pluralName: 'collections';
-    singularName: 'collection';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    categories: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::category.category'
-    >;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::collection.collection'
-    > &
-      Schema.Attribute.Private;
-    name: Schema.Attribute.String;
-    publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.String;
+    topBlocks: Schema.Attribute.Relation<'manyToMany', 'api::block.block'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -719,11 +693,18 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
-    category: Schema.Attribute.Relation<'oneToOne', 'api::category.category'>;
+    banner: Schema.Attribute.Component<'shared.product-banner', false>;
+    blocks: Schema.Attribute.Relation<'manyToMany', 'api::block.block'>;
+    category: Schema.Attribute.Relation<'manyToOne', 'api::category.category'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.String;
+    dimensions: Schema.Attribute.RichText;
+    features: Schema.Attribute.RichText;
+    hoverImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
     images: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
       true
@@ -1292,7 +1273,6 @@ declare module '@strapi/strapi' {
       'api::author.author': ApiAuthorAuthor;
       'api::block.block': ApiBlockBlock;
       'api::category.category': ApiCategoryCategory;
-      'api::collection.collection': ApiCollectionCollection;
       'api::cta.cta': ApiCtaCta;
       'api::home.home': ApiHomeHome;
       'api::item.item': ApiItemItem;

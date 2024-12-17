@@ -4,6 +4,8 @@ import { HeroBlock } from './HeroBlock';
 import { HeaderDividerBlock } from './HeaderDividerBlock';
 import { CardSliderBlock } from './CardSliderBlock';
 import { HeroCardListBlock } from './HeroCardListBlock';
+import { TextBlock } from './TextBlock';
+import { ImageSliderBlock } from './ImageSliderBlock';
 
 type Props = {
   blocks?: IBlock[];
@@ -22,6 +24,10 @@ const Blocks = ({ blocks = [] }: Props) => {
         return <CardSliderBlock key={block.id} {...block} />;
       case 'HeroCardListBlock':
         return <HeroCardListBlock key={block.id} {...block} />;
+      case 'TextBlock':
+        return <TextBlock key={block.id} {...block} />;
+      case 'ImageSliderBlock':
+        return <ImageSliderBlock key={block.id} {...block} />;
       default:
         break;
     }

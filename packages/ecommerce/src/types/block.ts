@@ -25,6 +25,7 @@ export interface IBlock extends IBase {
   heading: string | null;
   subHeading: string | null;
   textAlign: string | null;
+  textAlign2: string | null;
   theme: string | null;
   type: string | null;
   logo: IMedia | null;
@@ -37,5 +38,7 @@ export interface IBlock extends IBase {
   primaryCTA: ICTA | null;
   secondaryCTA: ICTA | null;
   link: ICTA | null;
+  style: string | null;
   items: IItem[];
+  images: IMedia[];
 }

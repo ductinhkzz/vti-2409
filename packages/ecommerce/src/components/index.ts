@@ -4,3 +4,4 @@ export * from './icons';
 export * from './blocks';
 export * from './cta';
 export * from './LazyImage';
+export * from './Products';
