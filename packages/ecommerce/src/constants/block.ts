@@ -5,7 +5,8 @@ export const HERO_BLOCK_STYLES = {
 
 export const BLOCK_THEME = {
   ALMOST_BLACK: 'theme-almost-black',
-  WHITE: 'them-white',
+  WHITE: 'theme-white',
+  WARM_GREY: 'theme-warm-grey',
 };
 
 export const BLOCK_TEXT_ALIGN = {
