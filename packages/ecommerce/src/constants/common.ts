@@ -1,15 +1,15 @@
 export const THEME_STORAGE_KEY = 'app-ui-theme';
 export const MAIN_NAV_ITEMS = [
   {
-    href: '/bed',
+    href: 'category/beds',
     label: 'Beds',
   },
   {
-    href: '/furniture',
+    href: 'category/furniture',
     label: 'Furniture',
   },
   {
-    href: '/bedding',
+    href: 'category/bedding',
     label: 'Bedding',
   },
   {

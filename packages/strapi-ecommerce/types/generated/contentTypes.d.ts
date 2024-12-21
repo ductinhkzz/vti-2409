@@ -450,6 +450,10 @@ export interface ApiBlockBlock extends Struct.CollectionTypeSchema {
       'manyToMany',
       'api::category.category'
     >;
+    categories2: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::category.category'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

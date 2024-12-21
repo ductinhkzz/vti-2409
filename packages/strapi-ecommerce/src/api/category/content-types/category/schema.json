@@ -36,7 +36,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::block.block",
-      "inversedBy": "categories"
+      "inversedBy": "categories2"
     },
     "bottomBlocks": {
       "type": "relation",

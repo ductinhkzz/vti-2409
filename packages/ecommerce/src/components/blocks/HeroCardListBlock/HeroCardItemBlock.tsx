@@ -4,6 +4,7 @@ import { LazyImage } from '@/components/LazyImage';
 import { Typography } from '@/components/Typography';
 import { cn } from '@/lib';
 import { CarouselItem } from '@/components/ui';
+import { SLIDER_CLASSES } from '@/constants';
 
 type Props = {
   item: IItem;
@@ -17,7 +18,7 @@ const TEXT_POSITION: Record<string, string> = {
 
 const HeroCardItemBlock = ({ item: { image, heading, subTitle, link, textPosition }, count = 1 }: Props) => {
   return (
-    <CarouselItem className={cn('basis-full pl-0', count >= 2 && 'md:basis-1/2')}>
+    <CarouselItem className={cn('basis-full', SLIDER_CLASSES[count], count <= 2 && 'pl-0')}>
       <div className='relative before:bg-black before:bg-opacity-25 before:content-[""] before:w-full before:h-full before:absolute'>
         <LazyImage image={image} className='h-full w-full' />
         <div className={cn('absolute w-full left-0', textPosition && TEXT_POSITION[textPosition])}>

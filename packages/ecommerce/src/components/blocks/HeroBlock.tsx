@@ -6,25 +6,29 @@ import { CTAButtons } from '../cta';
 import { getMediaUrl } from '@/utils';
 import { BLOCK_TEXT_ALIGN, BLOCK_THEME, HERO_BLOCK_STYLES } from '@/constants';
 
-const STYLE_CLASSES: Record<string, Record<string, Record<'container' | 'item1' | 'item2' | 'textItem2', string>>> = {
+const STYLE_CLASSES: Record<string, Record<string, Record<string, string>>> = {
   [HERO_BLOCK_STYLES.TEXT_MEDIA]: {
     [BLOCK_THEME.ALMOST_BLACK]: {
-      container: 'grid grid-cols-2 bg-black',
+      container: 'md:grid grid-cols-2 bg-black',
       item1: '',
       item2: 'col-start-2',
       textItem2: 'px-16 max-w-[75%]',
     },
     [BLOCK_THEME.WHITE]: {
-      container: 'grid grid-cols-2',
+      container: 'md:grid grid-cols-2',
       item1: '',
       item2: 'col-start-2',
       textItem2: 'px-16 max-w-[75%]',
     },
     [BLOCK_THEME.WARM_GREY]: {
-      container: 'grid grid-cols-2 bg-zinc-100 dark:bg-zinc-900',
+      container: 'md:grid grid-cols-2 bg-stone-50 dark:bg-zinc-900',
       item1: '',
       item2: 'col-start-2',
       textItem2: 'px-16 max-w-[75%]',
+    },
+    textAlign: {
+      [BLOCK_TEXT_ALIGN.CENTER]: 'w-full',
+      [BLOCK_TEXT_ALIGN.LEFT]: 'p-0 xl:ps-16 2xl:ps-32',
     },
   },
   [HERO_BLOCK_STYLES.SINGLE_IMAGE]: {
@@ -46,6 +50,10 @@ const STYLE_CLASSES: Record<string, Record<string, Record<'container' | 'item1' 
       item1: '',
       item2: 'absolute top-0 flex justify-center h-full w-full',
       textItem2: '',
+    },
+    textAlign: {
+      [BLOCK_TEXT_ALIGN.CENTER]: 'w-full',
+      [BLOCK_TEXT_ALIGN.LEFT]: '2xl:w-3/6 h-full 2xl:ps-[25%] xl:ps-56 xl:w-4/6',
     },
   },
 };
@@ -74,6 +82,7 @@ const HeroBlock = ({
   const currTheme = theme ?? BLOCK_THEME.WHITE;
   const currThemeClasses = currStyle[currTheme];
   const isNotBlackTheme = currTheme !== BLOCK_THEME.ALMOST_BLACK;
+
   return (
     <section className={cn('relative', currThemeClasses.container)}>
       {video1 && (
@@ -88,9 +97,9 @@ const HeroBlock = ({
         className={cn(
           currThemeClasses.item2,
           currThemeClasses.textItem2,
-          Boolean(image2) && 'col-start-1',
+          Boolean(image2) && 'md:col-start-1',
           'absolute top-0 flex justify-center h-full',
-          textAlign === 'center' ? 'w-full' : '2xl:w-3/6 h-full 2xl:ps-[25%] xl:ps-56 xl:w-4/6',
+          currStyle.textAlign[textAlign ?? BLOCK_TEXT_ALIGN.LEFT],
         )}>
         <div
           className={cn(

@@ -143,12 +143,6 @@
       "target": "api::product.product",
       "mappedBy": "blocks"
     },
-    "categories": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::category.category",
-      "mappedBy": "bottomBlocks"
-    },
     "textAlign2": {
       "type": "string"
     },
@@ -161,6 +155,18 @@
       ],
       "type": "media",
       "multiple": true
+    },
+    "categories2": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::category.category",
+      "mappedBy": "topBlocks"
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::category.category",
+      "mappedBy": "bottomBlocks"
     }
   }
 }

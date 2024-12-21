@@ -6,14 +6,19 @@ import { CTAButton } from '@/components/cta';
 import { LazyImage } from '@/components/LazyImage';
 import { Typography } from '@/components/Typography';
 import { CarouselItem } from '@/components/ui';
+import { cn } from '@/lib';
+import { SLIDER_CLASSES } from '@/constants';
 
 type Props = {
   item: IItem;
+  isSlider?: boolean;
+  count?: number;
 };
 
-const CardItemBlock: FC<Props> = ({ item }) => {
+const CardItemBlock: FC<Props> = ({ item, isSlider, count = 0 }) => {
   return (
-    <CarouselItem className='basis-full md:basis-1/2 lg:basis-1/4'>
+    <CarouselItem
+      className={cn('basis-full', isSlider && 'md:basis-1/2 lg:basis-1/4', !isSlider && SLIDER_CLASSES[count])}>
       <div className='h-full'>
         <div className='h-full'>
           <Link

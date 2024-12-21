@@ -2,7 +2,7 @@ import { IBlock } from '@/types';
 import { StartPageHeroBlock } from './StartPageHeroBlock';
 import { HeroBlock } from './HeroBlock';
 import { HeaderDividerBlock } from './HeaderDividerBlock';
-import { CardSliderBlock } from './CardSliderBlock';
+import { CardListBlock, CardSliderBlock } from './CardSliderBlock';
 import { HeroCardListBlock } from './HeroCardListBlock';
 import { TextBlock } from './TextBlock';
 import { ImageSliderBlock } from './ImageSliderBlock';
@@ -24,6 +24,8 @@ const Blocks = ({ blocks = [] }: Props) => {
         return <CardSliderBlock key={block.id} {...block} />;
       case 'HeroCardListBlock':
         return <HeroCardListBlock key={block.id} {...block} />;
+      case 'CardListBlock':
+        return <CardListBlock key={block.id} {...block} />;
       case 'TextBlock':
         return <TextBlock key={block.id} {...block} />;
       case 'ImageSliderBlock':

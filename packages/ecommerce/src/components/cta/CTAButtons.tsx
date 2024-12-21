@@ -8,6 +8,10 @@ type Props = Record<'primaryCTA' | 'secondaryCTA', ICTA | null> & {
 };
 
 const CTAButtons = ({ primaryCTA, secondaryCTA, className, useCurrentColor }: Props) => {
+  if (!primaryCTA && !secondaryCTA) {
+    return null;
+  }
+
   return (
     <div className={cn('flex gap-2', className)}>
       <CTAButton data={primaryCTA} type='primary' useCurrentColor={useCurrentColor} />
