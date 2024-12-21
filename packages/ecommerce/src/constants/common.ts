@@ -1,23 +1,23 @@
 export const THEME_STORAGE_KEY = 'app-ui-theme';
 export const MAIN_NAV_ITEMS = [
   {
-    href: 'category/beds',
+    href: 'collection/beds',
     label: 'Beds',
   },
   {
-    href: 'category/furniture',
+    href: 'collection/furniture',
     label: 'Furniture',
   },
   {
-    href: 'category/bedding',
+    href: 'collection/bedding',
     label: 'Bedding',
   },
   {
-    href: '/why-dux',
+    href: 'collection/why-dux',
     label: 'Why dux',
   },
   {
-    href: '/try-at-hotel',
+    href: 'collection/try-at-hotel',
     label: 'Try at hotel',
   },
   {

@@ -11,7 +11,7 @@ const About = lazy(() => import('@/pages/about'));
 const Login = lazy(() => import('@/pages/auth/login'));
 const LoginRedirect = lazy(() => import('@/pages/auth/redirect'));
 
-const Category = lazy(() => import('@/pages/category'));
+const Collection = lazy(() => import('@/pages/collection'));
 
 const AllRoutes = () => {
   return (
@@ -21,7 +21,7 @@ const AllRoutes = () => {
         <Route path='/login' element={<LoadComponent component={Login} />} />
         <Route path='/connect/:provider/redirect' element={<LoadComponent component={LoginRedirect} />} />
         <Route path='/about' element={<LoadComponent component={About} />} />
-        <Route path='/category/:slug' element={<LoadComponent component={Category} />} />
+        <Route path='/collection/:slug' element={<LoadComponent component={Collection} />} />
       </Route>
     </Routes>
   );

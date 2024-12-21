@@ -3,7 +3,7 @@ import { buildEndpointPopulate } from '@/utils';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-const Category = () => {
+const Collection = () => {
   const { slug } = useParams();
 
   const [data, setData] = useState<any>();
@@ -42,7 +42,7 @@ const Category = () => {
       'products.thumbnail',
       'products.hoverImage',
     ]);
-    fetch(`${homeApi}&filters[slug][$eq]=${slug}`)
+    fetch(`${homeApi}&filters[slug][$eq]=/${slug}`)
       .then((res) => res.json())
       .then((d) => setData(d.data[0] ?? null));
   }, [slug]);
@@ -64,4 +64,4 @@ const Category = () => {
   );
 };
 
-export default Category;
+export default Collection;

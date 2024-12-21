@@ -4,7 +4,7 @@
   "info": {
     "singularName": "category",
     "pluralName": "categories",
-    "displayName": "Category",
+    "displayName": "Collections",
     "description": "Organize your content into categories"
   },
   "options": {
@@ -14,9 +14,6 @@
   "attributes": {
     "name": {
       "type": "string"
-    },
-    "slug": {
-      "type": "uid"
     },
     "description": {
       "type": "text"
@@ -36,19 +33,28 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::block.block",
-      "inversedBy": "categories2"
+      "inversedBy": "collectionTopBlocks"
     },
     "bottomBlocks": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::block.block",
-      "inversedBy": "categories"
+      "inversedBy": "collectionBottomBlocks"
     },
     "products": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::product.product",
       "mappedBy": "category"
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::sub-category.sub-category",
+      "mappedBy": "collection"
+    },
+    "slug": {
+      "type": "string"
     }
   }
 }
