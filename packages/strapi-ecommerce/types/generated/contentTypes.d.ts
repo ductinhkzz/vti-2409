@@ -711,6 +711,7 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
   };
   attributes: {
     banner: Schema.Attribute.Component<'shared.product-banner', false>;
+    bannerBodyText: Schema.Attribute.Text;
     blocks: Schema.Attribute.Relation<'manyToMany', 'api::block.block'>;
     category: Schema.Attribute.Relation<'manyToOne', 'api::category.category'>;
     createdAt: Schema.Attribute.DateTime;

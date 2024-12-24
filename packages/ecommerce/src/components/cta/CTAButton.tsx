@@ -26,7 +26,7 @@ const CTAButton = ({ data, type = 'secondary', useCurrentColor, component, class
         variant='outline'
         size='sm'
         className={cn(
-          'bg-transparent text-xs',
+          'bg-transparent text-[0.625rem] sm:text-xs',
           !useCurrentColor && 'text-white border-white',
           useCurrentColor && 'border-gray-700 dark:border-white',
           className,
@@ -44,7 +44,7 @@ const CTAButton = ({ data, type = 'secondary', useCurrentColor, component, class
       variant='ghost'
       size='sm'
       className={cn(
-        'text-xs hover:border hover:border-gray-700 dark:hover:border-white',
+        'text-[0.625rem] sm:text-xs hover:border hover:border-gray-700 dark:hover:border-white',
         !useCurrentColor && 'text-white',
         className,
       )}

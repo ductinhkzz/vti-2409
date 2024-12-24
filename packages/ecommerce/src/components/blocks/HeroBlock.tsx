@@ -6,25 +6,28 @@ import { CTAButtons } from '../cta';
 import { getMediaUrl } from '@/utils';
 import { BLOCK_TEXT_ALIGN, BLOCK_THEME, HERO_BLOCK_STYLES } from '@/constants';
 
+const CONTAINER_CLASS =
+  'before:bg-black before:bg-opacity-50 before:content-[""] before:w-full before:h-full before:absolute';
+
 const STYLE_CLASSES: Record<string, Record<string, Record<string, string>>> = {
   [HERO_BLOCK_STYLES.TEXT_MEDIA]: {
     [BLOCK_THEME.ALMOST_BLACK]: {
-      container: 'md:grid grid-cols-2 bg-black',
+      container: cn('md:grid grid-cols-2 bg-black', CONTAINER_CLASS, 'md:before:bg-transparent'),
       item1: '',
       item2: 'col-start-2',
-      textItem2: 'px-16 max-w-[75%]',
+      textItem2: 'px-16 md:max-w-[75%]',
     },
     [BLOCK_THEME.WHITE]: {
-      container: 'md:grid grid-cols-2',
+      container: cn('md:grid grid-cols-2 bg-black', CONTAINER_CLASS, 'md:before:bg-transparent'),
       item1: '',
       item2: 'col-start-2',
-      textItem2: 'px-16 max-w-[75%]',
+      textItem2: 'px-16 md:max-w-[75%]',
     },
     [BLOCK_THEME.WARM_GREY]: {
-      container: 'md:grid grid-cols-2 bg-stone-50 dark:bg-zinc-900',
+      container: cn('md:grid grid-cols-2 bg-stone-50 dark:bg-zinc-900', CONTAINER_CLASS, 'md:before:bg-transparent'),
       item1: '',
       item2: 'col-start-2',
-      textItem2: 'px-16 max-w-[75%]',
+      textItem2: 'px-16 md:max-w-[75%]',
     },
     textAlign: {
       [BLOCK_TEXT_ALIGN.CENTER]: 'w-full',
@@ -33,20 +36,19 @@ const STYLE_CLASSES: Record<string, Record<string, Record<string, string>>> = {
   },
   [HERO_BLOCK_STYLES.SINGLE_IMAGE]: {
     [BLOCK_THEME.ALMOST_BLACK]: {
-      container:
-        'bg-black before:bg-black before:bg-opacity-50 before:content-[""] before:w-full before:h-full before:absolute',
+      container: CONTAINER_CLASS,
       item1: '',
       item2: 'absolute top-0 flex justify-center h-full w-full',
       textItem2: '',
     },
     [BLOCK_THEME.WHITE]: {
-      container: 'before:bg-black before:bg-opacity-50 before:content-[""] before:w-full before:h-full before:absolute',
+      container: CONTAINER_CLASS,
       item1: '',
       item2: 'absolute top-0 flex justify-center h-full w-full',
       textItem2: '',
     },
     [BLOCK_THEME.WARM_GREY]: {
-      container: 'before:bg-black before:bg-opacity-50 before:content-[""] before:w-full before:h-full before:absolute',
+      container: CONTAINER_CLASS,
       item1: '',
       item2: 'absolute top-0 flex justify-center h-full w-full',
       textItem2: '',
@@ -91,7 +93,7 @@ const HeroBlock = ({
           <source src={getMediaUrl(video1.url)} />
         </video>
       )}
-      <LazyImage image={image1} className='h-full w-full xl:h-[70vh]' />
+      <LazyImage image={image1} className='h-full w-full min-h-80 xl:h-[70vh]' />
       <LazyImage image={image2} className='h-full w-full xl:h-[70vh]' containerClass={currThemeClasses.item2} />
       <div
         className={cn(
@@ -103,19 +105,34 @@ const HeroBlock = ({
         )}>
         <div
           className={cn(
-            'flex justify-center items-start flex-col h-full p-8 lg:p-16 xl:p-0',
+            'flex justify-center items-start flex-col h-full p-4 sm:p-8 lg:p-16 xl:p-0',
             TEXT_CLASSES[textAlign2 ?? textAlign ?? BLOCK_TEXT_ALIGN.LEFT],
           )}>
-          {eyeBrow && <Typography type='eyeBrow' text={eyeBrow} className='mb-4' useCurrentColor={isNotBlackTheme} />}
-          {heading && (
-            <Typography text={heading} className='mb-2 sm:mb-4 lg:mb-6 uppercase' useCurrentColor={isNotBlackTheme} />
+          {eyeBrow && (
+            <Typography
+              type='eyeBrow'
+              text={eyeBrow}
+              className={cn('mb-2 sm:mb-4', isNotBlackTheme && 'text-white md:text-current')}
+            />
           )}
-          {body && <Typography type='body' text={body} className='mb-4' useCurrentColor={isNotBlackTheme} />}
+          {heading && (
+            <Typography
+              text={heading}
+              className={cn('mb-2 sm:mb-4 lg:mb-6 uppercase', isNotBlackTheme && 'text-white md:text-current')}
+            />
+          )}
+          {body && (
+            <Typography
+              type='body'
+              text={body}
+              className={cn('mb-2 sm:mb-4', isNotBlackTheme && 'text-white md:text-current')}
+            />
+          )}
           <CTAButtons
             primaryCTA={primaryCTA}
             secondaryCTA={secondaryCTA}
             className='mt-0 sm:mt-4 lg:mt-6'
-            useCurrentColor={isNotBlackTheme}
+            primaryBtnClass={cn(isNotBlackTheme && 'md:border-gray-700 md:dark:border-white md:text-inherit')}
           />
         </div>
       </div>

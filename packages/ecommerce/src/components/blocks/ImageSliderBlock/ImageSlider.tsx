@@ -25,7 +25,7 @@ export const ImageSlider = ({ images }: Props) => {
             <div>
               <Card>
                 <CardContent className='p-0'>
-                  <LazyImage image={image} />
+                  <LazyImage image={image} className='w-full' />
                 </CardContent>
               </Card>
             </div>

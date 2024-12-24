@@ -23,13 +23,13 @@ const ProductItem = ({ name, price, thumbnail, hoverImage }: IProduct) => {
             {hoverImage && (
               <LazyImage
                 image={hoverImage}
-                containerClass='opacity-0 group-hover:scale-105 ease-in-out duration-500 absolute top-0 group-hover:opacity-100'
-                className='aspect-square object-cover'
+                containerClass='opacity-0 group-hover:scale-105 ease-in-out duration-500 absolute top-0 group-hover:opacity-100 w-full'
+                className='aspect-square object-cover w-full'
               />
             )}
           </div>
           <div className='h-fit flex flex-col items-start justify-between w-full gap-1 px-8 sm:p-2'>
-            <div className='mb-4'>
+            <div className='my-4 md:mt-0'>
               <Typography text={name} useCurrentColor fixedSize='text-xs tracking-normal mb-2' />
               <Typography type='subTitle' text={`Start at ${formattedNumber(price)}`} useCurrentColor />
             </div>

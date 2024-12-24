@@ -26,7 +26,11 @@ const Home = () => {
     ]);
     fetch(homeApi)
       .then((res) => res.json())
-      .then((d) => setData(d.data.blocks));
+      .then((d) => setData(d.data.blocks))
+      .catch((error) => {
+        console.error(error);
+        setData([]);
+      });
   }, []);
 
   return <Blocks blocks={data} />;

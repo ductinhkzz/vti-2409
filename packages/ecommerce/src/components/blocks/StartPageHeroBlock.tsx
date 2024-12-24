@@ -12,7 +12,7 @@ const StartPageHeroBlock = ({ image, logo, primaryCTA, secondaryCTA, subHeading 
         <Image image={logo} className='h-12 sm:h-20 lg:h-32' />
         <div className='flex items-center gap-4 mt-8 mb-12 lg:flex-row flex-col'>
           {subHeading && (
-            <Typography type='subHeading' text={subHeading} className='text-xl text-white tracking-widest' />
+            <Typography type='subHeading' text={subHeading} className='md:text-xl text-white tracking-widest' />
           )}
           <CTAButtons primaryCTA={primaryCTA} secondaryCTA={secondaryCTA} />
         </div>

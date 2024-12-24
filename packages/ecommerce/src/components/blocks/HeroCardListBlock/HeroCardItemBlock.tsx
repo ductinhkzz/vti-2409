@@ -20,7 +20,7 @@ const HeroCardItemBlock = ({ item: { image, heading, subTitle, link, textPositio
   return (
     <CarouselItem className={cn('basis-full', SLIDER_CLASSES[count], count <= 2 && 'pl-0')}>
       <div className='relative before:bg-black before:bg-opacity-25 before:content-[""] before:w-full before:h-full before:absolute'>
-        <LazyImage image={image} className='h-full w-full' />
+        <LazyImage image={image} className='h-full w-full min-h-80' />
         <div className={cn('absolute w-full left-0', textPosition && TEXT_POSITION[textPosition])}>
           <div className='flex justify-center items-start flex-col h-full p-8'>
             {heading && (

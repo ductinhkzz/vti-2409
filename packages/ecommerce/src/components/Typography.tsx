@@ -14,9 +14,9 @@ const Typography = ({ type = 'heading', text, className, useCurrentColor, fixedS
       return (
         <h2
           className={cn(
-            'tracking-wide font-medium',
+            'tracking-wide',
             !useCurrentColor && 'text-white',
-            fixedSize ?? 'text-lg md:text-xl lg:text-3xl',
+            fixedSize ?? 'text-base sm:text-lg md:text-xl lg:text-3xl',
             className,
           )}>
           {text}
@@ -24,7 +24,12 @@ const Typography = ({ type = 'heading', text, className, useCurrentColor, fixedS
       );
     case 'eyeBrow':
       return (
-        <p className={cn('uppercase text-xs tracking-widest font-normal', !useCurrentColor && 'text-white', className)}>
+        <p
+          className={cn(
+            'uppercase text-[0.625rem] md:text-xs tracking-widest font-normal',
+            !useCurrentColor && 'text-white',
+            className,
+          )}>
           {text}
         </p>
       );
@@ -40,7 +45,7 @@ const Typography = ({ type = 'heading', text, className, useCurrentColor, fixedS
       return (
         <p
           className={cn(
-            'text-xs leading-5 tracking-wide',
+            'text-[0.625rem] md:text-xs leading-5 tracking-wide',
             !useCurrentColor && 'text-white',
             useCurrentColor && 'text-gray-600 dark:text-white',
             className,

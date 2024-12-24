@@ -61,6 +61,7 @@ const LazyImage = ({ image, className, containerClass, useView }: Props) => {
             onLoad={onLoad}
             onError={() => setLoaded(false)}
             className={cn(
+              'object-cover',
               className,
               'transition-opacity duration-300 ease-in-out',
               loaded ? 'opacity-100' : 'opacity-0',
