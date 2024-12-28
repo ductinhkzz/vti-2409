@@ -1,4 +1,4 @@
-import { IItem } from '@/types';
+import { IItem } from '@/redux/types';
 import { CTAButton } from '@/components/cta';
 import { LazyImage } from '@/components/LazyImage';
 import { Typography } from '@/components/Typography';

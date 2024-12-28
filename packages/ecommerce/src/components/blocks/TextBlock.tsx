@@ -1,4 +1,4 @@
-import { IBlock } from '@/types';
+import { IBlock } from '@/redux/types';
 import { Typography } from '../Typography';
 import { CTAButtons } from '../cta';
 import { cn } from '@/lib';

@@ -1,4 +1,4 @@
-import { IBlock } from '@/types';
+import { IBlock } from '@/redux/types';
 import { LazyImage } from '../LazyImage';
 import { Image } from '../Image';
 import { CTAButtons } from '../cta';

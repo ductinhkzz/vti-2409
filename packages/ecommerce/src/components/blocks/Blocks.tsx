@@ -1,4 +1,4 @@
-import { IBlock } from '@/types';
+import { IBlock } from '@/redux/types';
 import { StartPageHeroBlock } from './StartPageHeroBlock';
 import { HeroBlock } from './HeroBlock';
 import { HeaderDividerBlock } from './HeaderDividerBlock';

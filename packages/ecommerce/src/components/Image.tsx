@@ -1,4 +1,4 @@
-import { IMedia } from '@/types';
+import { IMedia } from '@/redux/types';
 import { getMediaUrl } from '@/utils';
 
 type Props = {

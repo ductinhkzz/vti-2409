@@ -1,11 +1,11 @@
-import { useContext } from 'react';
+import { Theme, toggleTheme } from '@/redux/global';
+import { useRedux } from './useRedux';
 
-import { ThemeContext } from '@/contexts';
+export const useTheme = (): [Theme, () => void] => {
+  const { appSelector, dispatch } = useRedux();
+  const { theme } = appSelector((state) => state.global);
 
-export const useTheme = () => {
-  const context = useContext(ThemeContext);
+  const toggle = () => dispatch(toggleTheme());
 
-  if (context === undefined) throw new Error('useTheme must be used within a ThemeProvider');
-
-  return context;
+  return [theme, toggle];
 };

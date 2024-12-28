@@ -531,6 +531,7 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
     name: Schema.Attribute.String;
     products: Schema.Attribute.Relation<'oneToMany', 'api::product.product'>;
     publishedAt: Schema.Attribute.DateTime;
+    showHeader: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     slug: Schema.Attribute.String;
     topBlocks: Schema.Attribute.Relation<'manyToMany', 'api::block.block'>;
     updatedAt: Schema.Attribute.DateTime;
@@ -713,6 +714,10 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     banner: Schema.Attribute.Component<'shared.product-banner', false>;
     bannerBodyText: Schema.Attribute.Text;
     blocks: Schema.Attribute.Relation<'manyToMany', 'api::block.block'>;
+    categories: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::sub-category.sub-category'
+    >;
     category: Schema.Attribute.Relation<'manyToOne', 'api::category.category'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -784,6 +789,7 @@ export interface ApiSubCategorySubCategory extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
+    products: Schema.Attribute.Relation<'manyToMany', 'api::product.product'>;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{

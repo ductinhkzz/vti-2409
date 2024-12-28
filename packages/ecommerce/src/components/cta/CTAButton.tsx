@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { CircleChevronRight } from 'lucide-react';
 
-import { ICTA } from '@/types';
+import { ICTA } from '@/redux/types';
 import { Button } from '../ui';
 import { cn } from '@/lib';
 
@@ -31,7 +31,8 @@ const CTAButton = ({ data, type = 'secondary', useCurrentColor, component, class
           useCurrentColor && 'border-gray-700 dark:border-white',
           className,
         )}
-        asChild>
+        asChild
+      >
         <Comp to={data.url} target={data.target}>
           {data.title}
         </Comp>
@@ -48,7 +49,8 @@ const CTAButton = ({ data, type = 'secondary', useCurrentColor, component, class
         !useCurrentColor && 'text-white',
         className,
       )}
-      asChild>
+      asChild
+    >
       <Comp to={data.url} target={data.target}>
         {data.title}
         <CircleChevronRight />

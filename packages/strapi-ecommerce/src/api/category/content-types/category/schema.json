@@ -55,6 +55,10 @@
     },
     "slug": {
       "type": "string"
+    },
+    "showHeader": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import { ICTA, IProduct } from '@/types';
+import { ICTA, IProduct } from '@/redux/types';
 import { LazyImage } from '../LazyImage';
 import { Typography } from '../Typography';
 import { CTAButton } from '../cta';
@@ -12,7 +12,8 @@ const ProductItem = ({ name, price, thumbnail, hoverImage }: IProduct) => {
       <Link
         to={'#'}
         target='_blank'
-        className='h-full flex items-center justify-center flex-col group hover:bg-gray-100 dark:hover:bg-gray-900'>
+        className='h-full flex items-center justify-center flex-col group hover:bg-gray-100 dark:hover:bg-gray-900'
+      >
         <div className='flex items-center justify-between flex-col h-full w-full'>
           <div className='relative overflow-hidden'>
             <LazyImage

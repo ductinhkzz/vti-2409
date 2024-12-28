@@ -1,4 +1,4 @@
-import { ICTA } from '@/types';
+import { ICTA } from '@/redux/types';
 import { cn } from '@/lib';
 import { CTAButton } from './CTAButton';
 

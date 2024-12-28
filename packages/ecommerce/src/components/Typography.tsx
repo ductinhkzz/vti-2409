@@ -18,7 +18,8 @@ const Typography = ({ type = 'heading', text, className, useCurrentColor, fixedS
             !useCurrentColor && 'text-white',
             fixedSize ?? 'text-base sm:text-lg md:text-xl lg:text-3xl',
             className,
-          )}>
+          )}
+        >
           {text}
         </h2>
       );
@@ -29,7 +30,8 @@ const Typography = ({ type = 'heading', text, className, useCurrentColor, fixedS
             'uppercase text-[0.625rem] md:text-xs tracking-widest font-normal',
             !useCurrentColor && 'text-white',
             className,
-          )}>
+          )}
+        >
           {text}
         </p>
       );
@@ -49,7 +51,8 @@ const Typography = ({ type = 'heading', text, className, useCurrentColor, fixedS
             !useCurrentColor && 'text-white',
             useCurrentColor && 'text-gray-600 dark:text-white',
             className,
-          )}>
+          )}
+        >
           {text}
         </p>
       );

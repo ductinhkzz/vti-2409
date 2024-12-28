@@ -5,3 +5,5 @@ export * from './blocks';
 export * from './cta';
 export * from './LazyImage';
 export * from './Products';
+export * from './Typography';
+export * from './LoadingWrapper';

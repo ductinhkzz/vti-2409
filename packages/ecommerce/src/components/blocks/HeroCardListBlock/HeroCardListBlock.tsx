@@ -1,4 +1,4 @@
-import { IBlock } from '@/types';
+import { IBlock } from '@/redux/types';
 import { CTAButton } from '@/components/cta';
 import { Typography } from '@/components/Typography';
 import { HeroCardItemBlock } from './HeroCardItemBlock';
@@ -17,7 +17,8 @@ const HeroCardListBlock = ({ heading, link, items }: IBlock) => {
           opts={{
             align: 'start',
           }}
-          className='w-full'>
+          className='w-full'
+        >
           <CarouselContent>
             {items.map((item) => (
               <HeroCardItemBlock key={item.id} item={item} count={items.length} />

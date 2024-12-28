@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import { LoadingOverlay } from '@/components';
+import { api } from '@/lib';
+import { JWT_STORAGE_KEY, USER_STORAGE_KEY } from '@/constants';
 
 const LoginRedirect = () => {
   const navigate = useNavigate();
@@ -9,22 +11,15 @@ const LoginRedirect = () => {
   const { provider } = useParams();
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/auth/${provider}/callback${location.search}`)
+    api
+      .get(`/auth/${provider}/callback${location.search}`)
       .then((res) => {
-        if (res.status !== 200) {
-          navigate('/');
-          throw new Error(`Couldn't login to Strapi. Status: ${res.status}`);
-        }
-        return res;
-      })
-      .then((res) => res.json())
-      .then((res) => {
-        localStorage.setItem('jwt', res.jwt);
-        localStorage.setItem('username', res.user.username);
+        localStorage.setItem(JWT_STORAGE_KEY, res.data.jwt);
+        localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(res.data.user));
         setTimeout(() => navigate('/'), 3000); // Redirect to homepage after 3 sec
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        navigate('/');
       });
   }, [location.search, navigate, provider]);
 

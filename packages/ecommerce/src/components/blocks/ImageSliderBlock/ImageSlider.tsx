@@ -3,7 +3,7 @@ import Autoplay from 'embla-carousel-autoplay';
 
 import { Card, CardContent } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
-import { IMedia } from '@/types';
+import { IMedia } from '@/redux/types';
 import { LazyImage } from '@/components/LazyImage';
 
 type Props = {
@@ -18,7 +18,8 @@ export const ImageSlider = ({ images }: Props) => {
       plugins={[plugin.current]}
       className='w-full'
       onMouseEnter={plugin.current.stop}
-      onMouseLeave={plugin.current.reset}>
+      onMouseLeave={plugin.current.reset}
+    >
       <CarouselContent>
         {images.map((image) => (
           <CarouselItem key={image.id}>

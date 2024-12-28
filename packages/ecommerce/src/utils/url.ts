@@ -6,3 +6,20 @@ export const buildEndpointPopulate = (endpoint: string, populates: string[]) => 
 
   return `${endpoint}?${params.toString()}`;
 };
+
+export const getBlockPopulate = (prefix = 'blocks') => {
+  return [
+    'image1',
+    'image2',
+    'video',
+    'video1',
+    'video2',
+    'logo',
+    'primaryCTA',
+    'secondaryCTA',
+    'items',
+    'link',
+    'items.image',
+    'items.link',
+  ].map((item) => `${prefix}.${item}`);
+};

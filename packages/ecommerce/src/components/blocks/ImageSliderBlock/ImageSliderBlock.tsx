@@ -1,6 +1,6 @@
 import { CTAButtons } from '@/components/cta';
 import { Typography } from '@/components/Typography';
-import { IBlock } from '@/types';
+import { IBlock } from '@/redux/types';
 import { ImageSlider } from './ImageSlider';
 
 const ImageSliderBlock = ({ images, eyeBrow, heading, body, primaryCTA, secondaryCTA }: IBlock) => {

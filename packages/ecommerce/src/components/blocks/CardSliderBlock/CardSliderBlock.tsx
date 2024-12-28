@@ -1,8 +1,8 @@
-import { IBlock } from '@/types';
 import { Carousel, CarouselContent, CarouselNext, CarouselPrevious } from '@/components/ui';
 import { CardItemBlock } from './CardItemBlock';
 import { Typography } from '@/components/Typography';
 import { CTAButton } from '@/components/cta';
+import { IBlock } from '@/redux/types';
 
 const CardSliderBlock = ({ items, heading, link }: IBlock) => {
   return (
@@ -16,7 +16,8 @@ const CardSliderBlock = ({ items, heading, link }: IBlock) => {
           opts={{
             align: 'start',
           }}
-          className='w-full max-w-5xl'>
+          className='w-full max-w-5xl'
+        >
           <div className='hidden absolute md:flex items-center justify-center gap-2 -top-6 right-0'>
             <CarouselPrevious className='relative top-0 left-0' />
             <CarouselNext className='relative top-0 left-0' />

@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
-import { IMedia } from '@/types';
+import { IMedia } from '@/redux/types';
 import { getMediaUrl } from '@/utils';
 import { cn } from '@/lib';
 import { Skeleton } from './ui';

@@ -1,4 +1,4 @@
-import { IBlock } from '@/types';
+import { IBlock } from '@/redux/types';
 import { cn } from '@/lib';
 import { LazyImage } from '../LazyImage';
 import { Typography } from '../Typography';
@@ -102,12 +102,14 @@ const HeroBlock = ({
           Boolean(image2) && 'md:col-start-1',
           'absolute top-0 flex justify-center h-full',
           currStyle.textAlign[textAlign ?? BLOCK_TEXT_ALIGN.LEFT],
-        )}>
+        )}
+      >
         <div
           className={cn(
             'flex justify-center items-start flex-col h-full p-4 sm:p-8 lg:p-16 xl:p-0',
             TEXT_CLASSES[textAlign2 ?? textAlign ?? BLOCK_TEXT_ALIGN.LEFT],
-          )}>
+          )}
+        >
           {eyeBrow && (
             <Typography
               type='eyeBrow'
