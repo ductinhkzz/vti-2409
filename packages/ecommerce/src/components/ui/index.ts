@@ -9,3 +9,7 @@ export * from './skeleton';
 export * from './toast';
 export * from './toaster';
 export * from './dropdown-menu';
+export * from './accordion';
+export * from './select';
+export * from './avatar';
+export * from './separator';

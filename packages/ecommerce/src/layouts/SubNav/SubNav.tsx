@@ -2,7 +2,7 @@ import { Moon, ShoppingCart, Sun } from 'lucide-react';
 
 import { Button } from '@/components';
 import { useTheme } from '@/hooks';
-import UserAvatar from './UserAvatar';
+import UserAction from './UserAction';
 
 const SubNav = () => {
   const [theme, toggleTheme] = useTheme();
@@ -16,7 +16,7 @@ const SubNav = () => {
               <ShoppingCart />
               <span className='hidden sm:block'>Cart</span>
             </Button>
-            <UserAvatar />
+            <UserAction />
             <Button size='sm' className='bg-black dark:text-white' onClick={toggleTheme}>
               {theme === 'light' ? <Moon /> : <Sun />}
               <span className='hidden sm:block'>{theme === 'light' ? 'Dark' : 'Light'}</span>

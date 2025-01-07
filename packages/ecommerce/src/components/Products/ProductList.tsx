@@ -1,4 +1,4 @@
-import { IProduct } from '@/redux/types';
+import { IProduct } from '@/redux/product';
 import ProductItem from './ProductItem';
 
 type Props = {

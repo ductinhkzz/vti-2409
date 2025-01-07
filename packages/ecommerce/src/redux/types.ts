@@ -1,3 +1,5 @@
+import { IProduct } from './product';
+
 export interface IBase {
   id: number;
   documentId: string;
@@ -31,7 +33,7 @@ export interface IMedia extends IBase {
 }
 
 export interface ICTA extends IBase {
-  target: string;
+  target?: string;
   title: string | null;
   url: string;
   text: string | null;
@@ -70,22 +72,6 @@ export interface IBlock extends IBase {
   style: string | null;
   items: IItem[];
   images: IMedia[];
-}
-
-export interface IProduct extends IBase {
-  name: string;
-  price: number;
-  description: string | null;
-  thumbnail: IMedia | null;
-  hoverImage: IMedia | null;
-  images: IMedia[];
-  banner: {
-    title: string;
-    body: string;
-    image: IMedia;
-  };
-  features: string | null;
-  dimensions: string | null;
 }
 
 export interface ICategory extends IBase {

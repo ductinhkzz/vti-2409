@@ -40,14 +40,14 @@
         "audios"
       ]
     },
+    "price": {
+      "type": "biginteger"
+    },
     "product": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::product.product",
-      "inversedBy": "product_variants"
-    },
-    "price": {
-      "type": "biginteger"
+      "inversedBy": "productVariants"
     }
   }
 }

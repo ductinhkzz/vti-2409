@@ -2,7 +2,7 @@ import { ICTA } from '@/redux/types';
 import { cn } from '@/lib';
 import { CTAButton } from './CTAButton';
 
-type Props = Record<'primaryCTA' | 'secondaryCTA', ICTA | null> & {
+type Props = Record<'primaryCTA' | 'secondaryCTA', Pick<ICTA, 'url' | 'target' | 'title'> | null> & {
   className?: string;
   useCurrentColor?: boolean;
   primaryBtnClass?: string;

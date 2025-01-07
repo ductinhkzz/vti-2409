@@ -35,7 +35,7 @@ const Login = () => {
             <div className='grid gap-2'>
               <div className='flex items-center'>
                 <Label htmlFor='password'>Password</Label>
-                <Link to='#' className='ml-auto inline-block text-xs sm:text-sm underline'>
+                <Link to='/forgot-password' className='ml-auto inline-block text-xs sm:text-sm underline'>
                   Forgot your password?
                 </Link>
               </div>
@@ -47,6 +47,11 @@ const Login = () => {
             <Button variant='outline' asChild={true} className='w-full'>
               <a className='cursor-pointer' href={`${import.meta.env.VITE_API_URL}/connect/google`}>
                 Login with Google
+              </a>
+            </Button>
+            <Button variant='outline' asChild={true} className='w-full'>
+              <a className='cursor-pointer' href={`${import.meta.env.VITE_API_URL}/connect/facebook`}>
+                Login with Facebook
               </a>
             </Button>
           </form>

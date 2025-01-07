@@ -10,8 +10,23 @@ export const parse = <T>(data: string | null) => {
   }
 };
 
+const isJson = (val: any) => {
+  try {
+    JSON.parse(val);
+    return true;
+  } catch {
+    return false;
+  }
+};
+
 export class LocalStorageService {
   static get<T>(key: string): T | null {
+    const val = localStorage.getItem(key);
+
+    if (!isJson(val)) {
+      return val as T | null;
+    }
+
     return parse(localStorage.getItem(key));
   }
 

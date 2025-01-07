@@ -9,6 +9,7 @@ export const buildEndpointPopulate = (endpoint: string, populates: string[]) => 
 
 export const getBlockPopulate = (prefix = 'blocks') => {
   return [
+    'image',
     'image1',
     'image2',
     'video',

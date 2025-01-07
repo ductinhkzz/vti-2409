@@ -35,7 +35,7 @@
       "target": "api::variant.variant",
       "mappedBy": "product"
     },
-    "product_variants": {
+    "productVariants": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::product-variant.product-variant",

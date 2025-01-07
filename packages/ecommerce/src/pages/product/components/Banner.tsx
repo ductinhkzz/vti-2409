@@ -1,5 +1,5 @@
+import { IProduct } from '@/redux/product';
 import { LazyImage, Typography } from '@/components';
-import { IProduct } from '@/redux/types';
 
 type Props = {
   data?: IProduct['banner'];

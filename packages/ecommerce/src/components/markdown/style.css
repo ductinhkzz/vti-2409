@@ -1,0 +1,62 @@
+/* Light and dark theme variables using Tailwind's dark mode */
+:root {
+  --color-canvas-default: theme(colors.white);
+  --color-canvas-subtle: #f6f8fa;
+  --color-border-default: #d0d7de;
+  --color-border-muted: hsla(210, 18%, 87%, 1);
+}
+
+.dark {
+  --color-canvas-default: #0d1117;
+  --color-canvas-subtle: #161b22;
+  --color-border-default: #30363d;
+  --color-border-muted: #21262d;
+}
+
+.markdown {
+  /* Table styling */
+  @apply text-[0.625rem] md:text-xs;
+
+  table {
+    border-spacing: 0;
+    border-collapse: collapse;
+    display: block;
+    margin-top: 0;
+    margin-bottom: 16px;
+    width: max-content;
+    max-width: 100%;
+    overflow: auto;
+  }
+
+  tr {
+    background-color: var(--color-canvas-default);
+    border-top: 1px solid var(--color-border-muted);
+  }
+
+  tr:nth-child(2n) {
+    background-color: var(--color-canvas-subtle);
+  }
+
+  td,
+  th {
+    padding: 6px 13px;
+    border: 1px solid var(--color-border-default);
+    @apply text-gray-600 dark:text-white px-2 py-1;
+  }
+
+  th {
+    font-weight: 600;
+  }
+
+  table img {
+    background-color: transparent;
+  }
+
+  h5 {
+    @apply mb-2 font-medium;
+  }
+
+  p {
+    @apply mb-1 text-gray-600 dark:text-white;
+  }
+}

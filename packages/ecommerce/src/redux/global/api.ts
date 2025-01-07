@@ -64,5 +64,9 @@ export const globalApi = api.injectEndpoints({
   }),
 });
 
-export const { useGetSingleTypePageQuery, useGetCollectionsQuery, useGetCollectionQuery, useGetCategoryQuery } =
-  globalApi;
+export const {
+  useGetSingleTypePageQuery,
+  useGetCollectionsQuery,
+  useGetCollectionQuery,
+  useGetCategoryQuery,
+} = globalApi;
