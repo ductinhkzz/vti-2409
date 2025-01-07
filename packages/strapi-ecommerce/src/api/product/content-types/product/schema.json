@@ -97,6 +97,12 @@
       "relation": "manyToMany",
       "target": "api::sub-category.sub-category",
       "mappedBy": "products"
+    },
+    "product_orders": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product-order.product-order",
+      "mappedBy": "product"
     }
   }
 }

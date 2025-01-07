@@ -369,6 +369,48 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAddressAddress extends Struct.CollectionTypeSchema {
+  collectionName: 'addresses';
+  info: {
+    displayName: 'Address';
+    pluralName: 'addresses';
+    singularName: 'address';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    address1: Schema.Attribute.String;
+    address2: Schema.Attribute.String;
+    city: Schema.Attribute.String;
+    company: Schema.Attribute.String;
+    country: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    firstName: Schema.Attribute.String;
+    lastName: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::address.address'
+    > &
+      Schema.Attribute.Private;
+    orders: Schema.Attribute.Relation<'oneToMany', 'api::order.order'>;
+    phone: Schema.Attribute.String;
+    postalCode: Schema.Attribute.String;
+    province: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+  };
+}
+
 export interface ApiAttributeAttribute extends Struct.CollectionTypeSchema {
   collectionName: 'attributes';
   info: {
@@ -659,6 +701,77 @@ export interface ApiManufacturerManufacturer
   };
 }
 
+export interface ApiOrderOrder extends Struct.CollectionTypeSchema {
+  collectionName: 'orders';
+  info: {
+    description: '';
+    displayName: 'Order';
+    pluralName: 'orders';
+    singularName: 'order';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    address: Schema.Attribute.Relation<'manyToOne', 'api::address.address'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::order.order'> &
+      Schema.Attribute.Private;
+    orderStatus: Schema.Attribute.String & Schema.Attribute.DefaultTo<'DRAFT'>;
+    productOrders: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::product-order.product-order'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    total: Schema.Attribute.Integer;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+  };
+}
+
+export interface ApiProductOrderProductOrder
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'product_orders';
+  info: {
+    displayName: 'ProductOrder';
+    pluralName: 'product-orders';
+    singularName: 'product-order';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    amount: Schema.Attribute.Integer;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::product-order.product-order'
+    > &
+      Schema.Attribute.Private;
+    orders: Schema.Attribute.Relation<'manyToMany', 'api::order.order'>;
+    product: Schema.Attribute.Relation<'manyToOne', 'api::product.product'>;
+    product_variant: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::product-variant.product-variant'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiProductVariantProductVariant
   extends Struct.CollectionTypeSchema {
   collectionName: 'product_variants';
@@ -691,6 +804,10 @@ export interface ApiProductVariantProductVariant
       Schema.Attribute.Private;
     price: Schema.Attribute.BigInteger;
     product: Schema.Attribute.Relation<'manyToOne', 'api::product.product'>;
+    product_orders: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::product-order.product-order'
+    >;
     publishedAt: Schema.Attribute.DateTime;
     thumbnail: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     updatedAt: Schema.Attribute.DateTime;
@@ -740,6 +857,10 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     name: Schema.Attribute.String;
     price: Schema.Attribute.BigInteger;
+    product_orders: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::product-order.product-order'
+    >;
     productVariants: Schema.Attribute.Relation<
       'oneToMany',
       'api::product-variant.product-variant'
@@ -1310,6 +1431,7 @@ export interface PluginUsersPermissionsUser
     > &
       Schema.Attribute.Private;
     name: Schema.Attribute.String & Schema.Attribute.Required;
+    orders: Schema.Attribute.Relation<'oneToMany', 'api::order.order'>;
     password: Schema.Attribute.Password &
       Schema.Attribute.Private &
       Schema.Attribute.SetMinMaxLength<{
@@ -1321,6 +1443,10 @@ export interface PluginUsersPermissionsUser
     role: Schema.Attribute.Relation<
       'manyToOne',
       'plugin::users-permissions.role'
+    >;
+    shippingAddresses: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::address.address'
     >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1344,6 +1470,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::address.address': ApiAddressAddress;
       'api::attribute.attribute': ApiAttributeAttribute;
       'api::author.author': ApiAuthorAuthor;
       'api::block.block': ApiBlockBlock;
@@ -1352,6 +1479,8 @@ declare module '@strapi/strapi' {
       'api::home.home': ApiHomeHome;
       'api::item.item': ApiItemItem;
       'api::manufacturer.manufacturer': ApiManufacturerManufacturer;
+      'api::order.order': ApiOrderOrder;
+      'api::product-order.product-order': ApiProductOrderProductOrder;
       'api::product-variant.product-variant': ApiProductVariantProductVariant;
       'api::product.product': ApiProductProduct;
       'api::sub-category.sub-category': ApiSubCategorySubCategory;
