@@ -9,7 +9,6 @@ const withLogin = <P extends object>(WrappedComponent: ComponentType<P>): FC<P> 
     const { jwt } = useUser();
 
     const { isLoading, isFetching } = useGetMeQuery(undefined, {
-      refetchOnMountOrArgChange: true,
       skip: !jwt,
     });
 

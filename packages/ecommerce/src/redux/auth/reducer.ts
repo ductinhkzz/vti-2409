@@ -37,6 +37,11 @@ export const authSlice = createSlice({
       state.jwt = null;
       state.user = null;
     });
+    builder.addMatcher(authApi.endpoints.loginProvider.matchRejected, (state) => {
+      state.jwt = null;
+      state.user = null;
+      state.isLoading = false;
+    });
     builder.addMatcher(authApi.endpoints.getMe.matchPending, (state) => {
       state.isLoading = true;
     });
@@ -44,10 +49,11 @@ export const authSlice = createSlice({
       state.user = action.payload;
       state.isLoading = false;
     });
-    builder.addMatcher(authApi.endpoints.loginProvider.matchRejected, (state) => {
-      state.jwt = null;
+    builder.addMatcher(authApi.endpoints.getMe.matchRejected, (state) => {
       state.user = null;
+      state.jwt = null;
       state.isLoading = false;
+      LocalStorageService.remove(JWT_STORAGE_KEY);
     });
   },
 });

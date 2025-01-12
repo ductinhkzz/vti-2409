@@ -396,7 +396,6 @@ export interface ApiAddressAddress extends Struct.CollectionTypeSchema {
       'api::address.address'
     > &
       Schema.Attribute.Private;
-    orders: Schema.Attribute.Relation<'oneToMany', 'api::order.order'>;
     phone: Schema.Attribute.String;
     postalCode: Schema.Attribute.String;
     province: Schema.Attribute.String;
@@ -713,7 +712,7 @@ export interface ApiOrderOrder extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    address: Schema.Attribute.Relation<'manyToOne', 'api::address.address'>;
+    address: Schema.Attribute.JSON;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -722,7 +721,7 @@ export interface ApiOrderOrder extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     orderStatus: Schema.Attribute.String & Schema.Attribute.DefaultTo<'DRAFT'>;
     productOrders: Schema.Attribute.Relation<
-      'manyToMany',
+      'oneToMany',
       'api::product-order.product-order'
     >;
     publishedAt: Schema.Attribute.DateTime;
@@ -741,6 +740,7 @@ export interface ApiProductOrderProductOrder
   extends Struct.CollectionTypeSchema {
   collectionName: 'product_orders';
   info: {
+    description: '';
     displayName: 'ProductOrder';
     pluralName: 'product-orders';
     singularName: 'product-order';
@@ -759,9 +759,9 @@ export interface ApiProductOrderProductOrder
       'api::product-order.product-order'
     > &
       Schema.Attribute.Private;
-    orders: Schema.Attribute.Relation<'manyToMany', 'api::order.order'>;
+    order: Schema.Attribute.Relation<'manyToOne', 'api::order.order'>;
     product: Schema.Attribute.Relation<'manyToOne', 'api::product.product'>;
-    product_variant: Schema.Attribute.Relation<
+    productVariant: Schema.Attribute.Relation<
       'manyToOne',
       'api::product-variant.product-variant'
     >;
@@ -804,7 +804,7 @@ export interface ApiProductVariantProductVariant
       Schema.Attribute.Private;
     price: Schema.Attribute.BigInteger;
     product: Schema.Attribute.Relation<'manyToOne', 'api::product.product'>;
-    product_orders: Schema.Attribute.Relation<
+    productOrders: Schema.Attribute.Relation<
       'oneToMany',
       'api::product-order.product-order'
     >;

@@ -4,7 +4,8 @@
   "info": {
     "singularName": "product-order",
     "pluralName": "product-orders",
-    "displayName": "ProductOrder"
+    "displayName": "ProductOrder",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -17,20 +18,20 @@
       "target": "api::product.product",
       "inversedBy": "product_orders"
     },
-    "product_variant": {
+    "productVariant": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::product-variant.product-variant",
-      "inversedBy": "product_orders"
+      "inversedBy": "productOrders"
     },
     "amount": {
       "type": "integer"
     },
-    "orders": {
+    "order": {
       "type": "relation",
-      "relation": "manyToMany",
+      "relation": "manyToOne",
       "target": "api::order.order",
-      "mappedBy": "productOrders"
+      "inversedBy": "productOrders"
     }
   }
 }

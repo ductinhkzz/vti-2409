@@ -9,3 +9,18 @@ export const profileSchema = object({
 });
 
 export type ProfileSchemaType = TypeOf<typeof profileSchema>;
+
+export const addressSchema = object({
+  firstName: string(),
+  lastName: string(),
+  company: string().optional().nullable(),
+  phone: string().regex(/^\d+$/),
+  city: string(),
+  province: string(),
+  country: string(),
+  postalCode: string(),
+  address1: string(),
+  address2: string().optional().nullable(),
+});
+
+export type AddressSchemaType = TypeOf<typeof addressSchema>

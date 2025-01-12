@@ -1,29 +1,9 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-
 import { IUser, LoginProviderPayload, LoginResponseType } from './types';
-import { baseUrl } from '../api';
-import { RootState } from '../store';
 import { buildEndpointPopulate } from '@/utils';
 import { IMedia } from '../types';
+import { authBaseApi } from '../authBaseApi';
 
-const baseQuery = fetchBaseQuery({
-  baseUrl,
-  prepareHeaders: (headers, { getState }) => {
-    const token = (getState() as RootState).auth.jwt;
-
-    // If we have a token set in state, let's assume that we should be passing it.
-    if (token) {
-      headers.set('Authorization', `bearer ${token}`);
-    }
-
-    return headers;
-  },
-});
-
-export const authApi = createApi({
-  baseQuery,
-  reducerPath: 'authApi',
-  tagTypes: ['Profile'],
+export const authApi = authBaseApi.injectEndpoints({
   endpoints: (builder) => ({
     loginProvider: builder.query<LoginResponseType, LoginProviderPayload>({
       query({ provider, search }) {
@@ -60,7 +40,6 @@ export const authApi = createApi({
           body: form,
         };
       },
-      invalidatesTags: ['Profile'],
     }),
     deleteFile: builder.mutation<void, number>({
       query(id) {

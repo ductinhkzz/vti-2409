@@ -13,3 +13,5 @@ export * from './accordion';
 export * from './select';
 export * from './avatar';
 export * from './separator';
+export * from './tooltip';
+export * from './dialog';

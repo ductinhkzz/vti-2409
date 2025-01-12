@@ -12,12 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "productOrders": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::product-order.product-order",
-      "inversedBy": "orders"
-    },
     "total": {
       "type": "integer"
     },
@@ -32,10 +26,13 @@
       "inversedBy": "orders"
     },
     "address": {
+      "type": "json"
+    },
+    "productOrders": {
       "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::address.address",
-      "inversedBy": "orders"
+      "relation": "oneToMany",
+      "target": "api::product-order.product-order",
+      "mappedBy": "order"
     }
   }
 }

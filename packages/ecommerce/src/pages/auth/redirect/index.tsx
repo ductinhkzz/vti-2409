@@ -1,8 +1,8 @@
 import { Navigate, useLocation, useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 
 import { LoadingOverlay } from '@/components';
 import { useLoginProviderQuery } from '@/redux/auth';
-import { useEffect } from 'react';
 import { useToast } from '@/hooks';
 
 const LoginRedirect = () => {

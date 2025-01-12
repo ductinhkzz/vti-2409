@@ -2,14 +2,6 @@ import { buildEndpointPopulate, getBlockPopulate } from '@/utils';
 import { api } from '../api';
 import { IProduct } from './types';
 
-export const collectionPopulate = [
-  'products',
-  'products.thumbnail',
-  'products.hoverImage',
-  ...getBlockPopulate('topBlocks'),
-  ...getBlockPopulate('bottomBlocks'),
-];
-
 const productPopulate = [
   'images',
   'banner',

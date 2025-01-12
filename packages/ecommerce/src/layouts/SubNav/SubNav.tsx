@@ -1,8 +1,9 @@
-import { Moon, ShoppingCart, Sun } from 'lucide-react';
+import { Moon, Sun } from 'lucide-react';
 
 import { Button } from '@/components';
 import { useTheme } from '@/hooks';
 import UserAction from './UserAction';
+import Cart from './Cart';
 
 const SubNav = () => {
   const [theme, toggleTheme] = useTheme();
@@ -12,10 +13,7 @@ const SubNav = () => {
       <div className='max-w-5xl px-4 py-2 w-full'>
         <div className='flex justify-end w-full'>
           <nav className='flex items-center text-sm justify-between'>
-            <Button size='sm' className='bg-black dark:text-white'>
-              <ShoppingCart />
-              <span className='hidden sm:block'>Cart</span>
-            </Button>
+            <Cart />
             <UserAction />
             <Button size='sm' className='bg-black dark:text-white' onClick={toggleTheme}>
               {theme === 'light' ? <Moon /> : <Sun />}

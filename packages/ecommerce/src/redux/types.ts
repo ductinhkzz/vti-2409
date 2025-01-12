@@ -86,3 +86,15 @@ export interface ICategory extends IBase {
 export interface ICollection extends ICategory {
   categories: ICategory[];
 }
+
+export type FilterType<T> = {
+  filters?: {
+    [key in keyof T]?: { [key in '$eq' | '$in']?: any }
+  };
+};
+
+export type PopulateType = {
+  populate?: string[];
+};
+
+export type GetDocumentType<T> = FilterType<T> & PopulateType;

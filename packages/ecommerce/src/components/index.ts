@@ -10,3 +10,5 @@ export * from './LoadingWrapper';
 export * from './markdown';
 export * from './SelectBox';
 export * from './UserAvatar';
+export * from './IconButton';
+export * from './ButtonLoading';
