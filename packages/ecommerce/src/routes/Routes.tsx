@@ -10,6 +10,7 @@ const About = lazy(() => import('@/pages/about'));
 
 /* Auth Page */
 const Login = lazy(() => import('@/pages/auth/login'));
+const Register = lazy(() => import('@/pages/auth/register'));
 const LoginRedirect = lazy(() => import('@/pages/auth/redirect'));
 const ForgotPassword = lazy(() => import('@/pages/auth/forgot-password'));
 const EmailConfirm = lazy(() => import('@/pages/auth/email-confirm'));
@@ -29,6 +30,7 @@ const AllRoutes = () => {
       <Route path='/' Component={withLogin(MainLayout)}>
         <Route index element={<LoadComponent component={Home} />} />
         <Route path='/login' element={<LoadComponent component={Login} />} />
+        <Route path='/register' element={<LoadComponent component={Register} />} />
         <Route path='/forgot-password' element={<LoadComponent component={ForgotPassword} />} />
         <Route path='/email-confirm' element={<LoadComponent component={EmailConfirm} />} />
         <Route path='/connect/:provider/redirect' element={<LoadComponent component={LoginRedirect} />} />
