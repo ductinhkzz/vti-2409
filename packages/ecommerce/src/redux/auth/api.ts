@@ -1,4 +1,4 @@
-import { IUser, LoginProviderPayload, LoginResponseType } from './types';
+import { IUser, LoginProviderPayload, LoginResponseType, ResetPasswordPayload, UserRegisterPayload } from './types';
 import { buildEndpointPopulate } from '@/utils';
 import { IMedia } from '../types';
 import { authBaseApi } from '../authBaseApi';
@@ -10,6 +10,24 @@ export const authApi = authBaseApi.injectEndpoints({
         return {
           url: `/auth/${provider}/callback${search}`,
           method: 'GET',
+        };
+      },
+    }),
+    login: builder.mutation<LoginResponseType, { identifier: string; password: string }>({
+      query(arg) {
+        return {
+          url: 'auth/local',
+          method: 'POST',
+          body: { ...arg },
+        };
+      },
+    }),
+    resendEmail: builder.mutation<void, { email: string }>({
+      query(arg) {
+        return {
+          url: 'auth/send-email-confirmation',
+          method: 'POST',
+          body: { ...arg },
         };
       },
     }),
@@ -27,6 +45,24 @@ export const authApi = authBaseApi.injectEndpoints({
       query(arg) {
         return {
           url: 'auth/forgot-password',
+          method: 'POST',
+          body: { ...arg },
+        };
+      },
+    }),
+    resetPassword: builder.mutation<LoginResponseType, ResetPasswordPayload>({
+      query(arg) {
+        return {
+          url: 'auth/reset-password',
+          method: 'POST',
+          body: { ...arg },
+        };
+      },
+    }),
+    register: builder.mutation<void, UserRegisterPayload>({
+      query(arg) {
+        return {
+          url: 'auth/local/register',
           method: 'POST',
           body: { ...arg },
         };
@@ -64,10 +100,14 @@ export const authApi = authBaseApi.injectEndpoints({
 
 export const {
   useLoginProviderQuery,
+  useLoginMutation,
   useGetMeQuery,
   useLazyGetMeQuery,
   useForgotPasswordMutation,
+  useResetPasswordMutation,
   useUploadFileMutation,
   useDeleteFileMutation,
   useUpdateProfileMutation,
+  useRegisterMutation,
+  useResendEmailMutation,
 } = authApi;

@@ -1,8 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import qs from 'qs';
 
 import { RootState } from './store';
 import { baseUrl } from './api';
+import { stringify } from '@/utils';
 
 const baseQuery = fetchBaseQuery({
   baseUrl,
@@ -16,7 +16,7 @@ const baseQuery = fetchBaseQuery({
 
     return headers;
   },
-  paramsSerializer: (params) => qs.stringify(params, { encodeValuesOnly: true, arrayFormat: 'indices' }),
+  paramsSerializer: (params) => stringify(params),
 });
 
 export const authBaseApi = createApi({

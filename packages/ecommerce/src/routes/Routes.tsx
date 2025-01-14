@@ -13,7 +13,7 @@ const Login = lazy(() => import('@/pages/auth/login'));
 const Register = lazy(() => import('@/pages/auth/register'));
 const LoginRedirect = lazy(() => import('@/pages/auth/redirect'));
 const ForgotPassword = lazy(() => import('@/pages/auth/forgot-password'));
-const EmailConfirm = lazy(() => import('@/pages/auth/email-confirm'));
+const ResetPassword = lazy(() => import('@/pages/auth/reset-password'));
 const Profile = lazy(() => import('@/pages/auth/profile'));
 const ShippingAddress = lazy(() => import('@/pages/auth/profile/shipping-address'));
 const Order = lazy(() => import('@/pages/auth/profile/order'));
@@ -32,7 +32,7 @@ const AllRoutes = () => {
         <Route path='/login' element={<LoadComponent component={Login} />} />
         <Route path='/register' element={<LoadComponent component={Register} />} />
         <Route path='/forgot-password' element={<LoadComponent component={ForgotPassword} />} />
-        <Route path='/email-confirm' element={<LoadComponent component={EmailConfirm} />} />
+        <Route path='/reset-password' element={<LoadComponent component={ResetPassword} />} />
         <Route path='/connect/:provider/redirect' element={<LoadComponent component={LoginRedirect} />} />
         <Route path='/about' element={<LoadComponent component={About} />} />
         <Route path='/collection/:id' element={<LoadComponent component={Collection} />} />

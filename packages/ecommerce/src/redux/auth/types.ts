@@ -18,3 +18,15 @@ export interface IUser extends IBase {
   avatar: IMedia | null;
   name?: string;
 }
+
+export type UserRegisterPayload = {
+  username: string;
+  password: string;
+  email: string;
+};
+
+export type ResetPasswordPayload = {
+  code: string;
+  password: string;
+  passwordConfirmation: string;
+};

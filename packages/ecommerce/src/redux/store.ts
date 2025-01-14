@@ -1,4 +1,4 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, isRejectedWithValue, Middleware } from '@reduxjs/toolkit';
 
 import { api } from './api';
 import { authBaseApi } from './authBaseApi';
@@ -7,6 +7,30 @@ import { authBaseApi } from './authBaseApi';
 import { globalReducer } from './global';
 import { authReducer } from './auth';
 import { orderApi } from './order';
+import { toast } from '@/hooks';
+
+const rtkQueryErrorLogger: Middleware = () => (next) => (action) => {
+  if (isRejectedWithValue(action)) {
+    const payload = action.payload as { data?: unknown };
+    if (
+      payload &&
+      'data' in payload &&
+      typeof payload.data === 'object' &&
+      payload.data !== null &&
+      'error' in payload.data &&
+      (payload.data as any).error?.message
+    ) {
+      toast({
+        title: (payload.data as any).error.status,
+        description: (payload.data as any).error?.message,
+        variant: 'error',
+      });
+      return next(action);
+    }
+  }
+
+  return next(action);
+};
 
 export const store = configureStore({
   reducer: {
@@ -16,7 +40,8 @@ export const store = configureStore({
     [api.reducerPath]: api.reducer,
     [authBaseApi.reducerPath]: authBaseApi.reducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat([api.middleware, authBaseApi.middleware]),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat([rtkQueryErrorLogger, api.middleware, authBaseApi.middleware]),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
