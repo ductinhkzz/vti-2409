@@ -9,8 +9,10 @@ import { authReducer } from './auth';
 import { orderApi } from './order';
 import { toast } from '@/hooks';
 
+const SKIP_ERROR_ENDPOINTS = ['login'];
+
 const rtkQueryErrorLogger: Middleware = () => (next) => (action) => {
-  if (isRejectedWithValue(action)) {
+  if (isRejectedWithValue(action) && !SKIP_ERROR_ENDPOINTS.includes((action.meta.arg as any)?.endpointName)) {
     const payload = action.payload as { data?: unknown };
     if (
       payload &&

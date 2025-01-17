@@ -94,7 +94,7 @@ export type FilterType<T> = {
 };
 
 export type PopulateType = {
-  populate?: string[];
+  populate?: string[] | Record<string, any>;
 };
 
 export type GetDocumentType<T> = FilterType<T> & PopulateType;

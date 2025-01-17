@@ -1,4 +1,4 @@
-import { buildEndpointPopulate, getBlockPopulate } from '@/utils';
+import { getBlockPopulate } from '@/utils';
 import { api } from '../api';
 import { IProduct } from './types';
 
@@ -17,10 +17,12 @@ export const productApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getProduct: builder.query<IProduct, string>({
       query(id) {
-        const endpoint = buildEndpointPopulate(`products/${id}`, productPopulate);
         return {
-          url: endpoint,
+          url: `products/${id}`,
           method: 'GET',
+          params: {
+            populate: productPopulate
+          }
         };
       },
       transformResponse: (response: { data: IProduct }) => {

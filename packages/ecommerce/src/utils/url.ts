@@ -1,12 +1,3 @@
-export const buildEndpointPopulate = (endpoint: string, populates: string[]) => {
-  const params = new URLSearchParams();
-  populates.forEach((populate, index) => {
-    params.append(`populate[${index}]`, populate);
-  });
-
-  return `${endpoint}?${params.toString()}`;
-};
-
 export const getBlockPopulate = (prefix = 'blocks') => {
   return [
     'image',
@@ -18,9 +9,9 @@ export const getBlockPopulate = (prefix = 'blocks') => {
     'logo',
     'primaryCTA',
     'secondaryCTA',
-    'items',
     'link',
     'items.image',
     'items.link',
+    'images',
   ].map((item) => `${prefix}.${item}`);
 };

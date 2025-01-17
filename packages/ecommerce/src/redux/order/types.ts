@@ -8,6 +8,7 @@ export interface IOrder extends IBase {
   user: IUser;
   total: number;
   address: IAddress;
+  productOrders: IProductOrder[];
 }
 
 export interface IProductOrder extends IBase {

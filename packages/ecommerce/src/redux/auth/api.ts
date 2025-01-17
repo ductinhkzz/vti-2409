@@ -1,5 +1,4 @@
 import { IUser, LoginProviderPayload, LoginResponseType, ResetPasswordPayload, UserRegisterPayload } from './types';
-import { buildEndpointPopulate } from '@/utils';
 import { IMedia } from '../types';
 import { authBaseApi } from '../authBaseApi';
 
@@ -21,6 +20,7 @@ export const authApi = authBaseApi.injectEndpoints({
           body: { ...arg },
         };
       },
+      invalidatesTags: (u) => [{ type: 'Profile', id: u?.user.documentId }],
     }),
     resendEmail: builder.mutation<void, { email: string }>({
       query(arg) {
@@ -33,10 +33,12 @@ export const authApi = authBaseApi.injectEndpoints({
     }),
     getMe: builder.query<IUser, void>({
       query() {
-        const url = buildEndpointPopulate('/users/me', ['avatar']);
         return {
-          url,
+          url: '/users/me',
           method: 'GET',
+          params: {
+            populate: ['avatar']
+          }
         };
       },
       providesTags: (u) => [{ type: 'Profile', id: u?.documentId }],

@@ -1,13 +1,16 @@
+import { useFieldArray, useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+
 import { Button, Form, FormField, FormItem, SelectBox, Typography } from '@/components';
 import { IProduct } from '@/redux/product';
 import { formattedNumber } from '@/utils';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useFieldArray, useForm } from 'react-hook-form';
 import { selectVariantSchema, SelectVariantSchemaType } from './schema';
 
-type Props = Partial<Pick<IProduct, 'variants' | 'price' | 'name' | 'productVariants'>>;
+type Props = Partial<Pick<IProduct, 'variants' | 'price' | 'name' | 'productVariants'>> & {
+  onClick: (d: SelectVariantSchemaType) => void;
+};
 
-const SelectVariants = ({ variants = [], name, price, productVariants = [] }: Props) => {
+const SelectVariants = ({ variants = [], name, price, productVariants = [], onClick }: Props) => {
   const form = useForm<SelectVariantSchemaType>({
     resolver: zodResolver(selectVariantSchema),
     values: {
@@ -26,18 +29,13 @@ const SelectVariants = ({ variants = [], name, price, productVariants = [] }: Pr
 
   const watchVariants = watch('variants');
   const selectedAttributeIds = watchVariants.map((v) => v.selectAttributeId);
-
   const matchProductVariant = productVariants.find((pv) =>
     pv.attributes.every((attr) => selectedAttributeIds.includes(attr.documentId)),
   );
 
   const currentPrice = matchProductVariant?.price ?? price;
 
-  const onSubmit = handleSubmit((data) => {
-    console.log('============================');
-    console.log(data);
-    console.log('============================');
-  });
+  const onSubmit = handleSubmit(onClick);
 
   return (
     <section className='flex justify-center my-8 px-4'>

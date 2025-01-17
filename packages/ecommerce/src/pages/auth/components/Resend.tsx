@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react';
 
 import { ButtonLoading } from '@/components';
+import { cn } from '@/lib';
 
 type Props = {
   onClick: () => void;
   isLoading?: boolean;
   isSuccess?: boolean;
+  className?: string;
 };
 
-const Resend = ({ onClick, isLoading, isSuccess }: Props) => {
+const Resend = ({ onClick, isLoading, isSuccess, className }: Props) => {
   const [countdown, setCountdown] = useState(30);
 
   const handleClick = () => {
@@ -26,7 +28,7 @@ const Resend = ({ onClick, isLoading, isSuccess }: Props) => {
   }, [countdown, isSuccess]);
 
   return (
-    <p className='text-sm flex justify-center items-center'>
+    <p className={cn('text-sm flex justify-center items-center', className)}>
       Did not receive the email?{' '}
       <ButtonLoading className='ml-2' size='sm' onClick={handleClick} isLoading={isLoading} disabled={countdown > 0}>
         Resend {countdown > 0 ? `in ${countdown}s` : ''}

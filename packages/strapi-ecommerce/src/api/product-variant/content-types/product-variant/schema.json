@@ -16,7 +16,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::attribute.attribute",
-      "mappedBy": "product_variants"
+      "mappedBy": "productVariants"
     },
     "thumbnail": {
       "type": "media",

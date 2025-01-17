@@ -15,3 +15,6 @@ export * from './avatar';
 export * from './separator';
 export * from './tooltip';
 export * from './dialog';
+export * from './alert';
+export * from './table';
+export * from './badge';

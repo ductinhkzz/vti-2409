@@ -20,7 +20,7 @@
       "target": "api::variant.variant",
       "inversedBy": "attributes"
     },
-    "product_variants": {
+    "productVariants": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::product-variant.product-variant",

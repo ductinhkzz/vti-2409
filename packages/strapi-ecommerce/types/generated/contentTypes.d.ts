@@ -431,7 +431,7 @@ export interface ApiAttributeAttribute extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     name: Schema.Attribute.String;
-    product_variants: Schema.Attribute.Relation<
+    productVariants: Schema.Attribute.Relation<
       'manyToMany',
       'api::product-variant.product-variant'
     >;

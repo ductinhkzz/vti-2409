@@ -1,10 +1,9 @@
-import { buildEndpointPopulate, getBlockPopulate } from '@/utils';
+import { getBlockPopulate } from '@/utils';
 import { api } from '../api';
 import { SingleTypePagResponse } from './types';
 import { ICategory, ICollection } from '../types';
 
 export const collectionPopulate = [
-  'products',
   'products.thumbnail',
   'products.hoverImage',
   ...getBlockPopulate('topBlocks'),
@@ -15,10 +14,12 @@ export const globalApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getSingleTypePage: builder.query<SingleTypePagResponse, string>({
       query(name) {
-        const endpoint = buildEndpointPopulate(name, getBlockPopulate());
         return {
-          url: endpoint,
+          url: name,
           method: 'GET',
+          params: {
+            populate: getBlockPopulate(),
+          },
         };
       },
       transformResponse: (response: { data: SingleTypePagResponse }) => {
@@ -27,10 +28,12 @@ export const globalApi = api.injectEndpoints({
     }),
     getCollections: builder.query<ICollection[], void>({
       query() {
-        const endpoint = buildEndpointPopulate('categories', ['categories', 'products']);
         return {
-          url: endpoint,
+          url: 'categories',
           method: 'GET',
+          params: {
+            populate: ['categories', 'products'],
+          },
         };
       },
       transformResponse: (response: { data: ICollection[] }) => {
@@ -39,10 +42,12 @@ export const globalApi = api.injectEndpoints({
     }),
     getCollection: builder.query<ICollection, string>({
       query(id) {
-        const endpoint = buildEndpointPopulate(`categories/${id}`, collectionPopulate);
         return {
-          url: endpoint,
+          url: `categories/${id}`,
           method: 'GET',
+          params: {
+            populate: collectionPopulate,
+          },
         };
       },
       transformResponse: (response: { data: ICollection }) => {
@@ -51,10 +56,12 @@ export const globalApi = api.injectEndpoints({
     }),
     getCategory: builder.query<ICategory, string>({
       query(id) {
-        const endpoint = buildEndpointPopulate(`sub-categories/${id}`, collectionPopulate);
         return {
-          url: endpoint,
+          url: `sub-categories/${id}`,
           method: 'GET',
+          params: {
+            populate: collectionPopulate,
+          },
         };
       },
       transformResponse: (response: { data: ICollection }) => {
@@ -64,9 +71,5 @@ export const globalApi = api.injectEndpoints({
   }),
 });
 
-export const {
-  useGetSingleTypePageQuery,
-  useGetCollectionsQuery,
-  useGetCollectionQuery,
-  useGetCategoryQuery,
-} = globalApi;
+export const { useGetSingleTypePageQuery, useGetCollectionsQuery, useGetCollectionQuery, useGetCategoryQuery } =
+  globalApi;

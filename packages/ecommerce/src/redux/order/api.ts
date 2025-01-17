@@ -36,7 +36,22 @@ export const orderApi = authBaseApi.injectEndpoints({
         },
       }),
     }),
+    updateProductOrder: builder.mutation<IProductOrder, { id: string; amount: number }>({
+      query: ({ id, ...params }) => ({
+        url: `product-orders/${id}`,
+        method: 'PUT',
+        body: {
+          data: params,
+        },
+      }),
+    }),
   }),
 });
 
-export const { useGetOrderQuery, useGetOrdersQuery, useCreateOrderMutation, useCreateProductOrderMutation } = orderApi;
+export const {
+  useGetOrderQuery,
+  useGetOrdersQuery,
+  useCreateOrderMutation,
+  useCreateProductOrderMutation,
+  useUpdateProductOrderMutation,
+} = orderApi;

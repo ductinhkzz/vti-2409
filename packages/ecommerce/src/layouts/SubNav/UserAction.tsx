@@ -13,7 +13,7 @@ import {
 import { logout } from '@/redux/auth';
 import { getMediaUrl } from '@/utils';
 
-const PRAVITE_ROUTES = ['/profile'];
+const PRAVITE_ROUTES = ['/profile', '/shipping-address', '/order'];
 
 const UserAction = () => {
   const location = useLocation();
