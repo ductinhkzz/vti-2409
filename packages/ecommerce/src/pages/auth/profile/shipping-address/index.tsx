@@ -1,6 +1,7 @@
 import { useUser } from '@/hooks';
 import { useGetAddressesQuery } from '@/redux';
-import { AddressCard, CreateAddressCard } from './components';
+
+import { AddressCard, CreateAddressCard } from '../components';
 
 const ShippingAddress = () => {
   const { user } = useUser();

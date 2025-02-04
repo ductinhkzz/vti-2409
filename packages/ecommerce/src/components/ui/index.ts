@@ -18,3 +18,4 @@ export * from './dialog';
 export * from './alert';
 export * from './table';
 export * from './badge';
+export * from './radio-group';

@@ -13,6 +13,10 @@ const navItems = [
     title: 'Shipping address',
   },
   {
+    href: '/cart',
+    title: 'Cart',
+  },
+  {
     href: '/order',
     title: 'Order',
   },

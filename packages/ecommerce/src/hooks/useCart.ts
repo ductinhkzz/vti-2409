@@ -1,8 +1,11 @@
 import {
   CreateProductOrderPayload,
+  OrderStatusEnum,
   useCreateOrderMutation,
   useCreateProductOrderMutation,
+  useDeleteProductOrderMutation,
   useGetOrdersQuery,
+  useUpdateOrderMutation,
   useUpdateProductOrderMutation,
 } from '@/redux/order';
 import { useUser } from './useUser';
@@ -34,10 +37,17 @@ const useCart = () => {
   );
 
   const [createOrder, { isLoading: isCreating, isSuccess: isCreated }] = useCreateOrderMutation();
+  const [updateOrder, { isLoading: isUpdating, isSuccess: isUpdated }] = useUpdateOrderMutation();
   const [createProductOrder, { isLoading: isCreatingProductOrder, isSuccess: isCreatedProductOrder }] =
     useCreateProductOrderMutation();
   const [updateProductOrder, { isLoading: isUpdatingProductOrder, isSuccess: isUpdatedProductOrder }] =
     useUpdateProductOrderMutation();
+  const [deleteProductOrder, { isLoading: isDeletingProductOrder, isSuccess: isDeletedProductOrder }] =
+    useDeleteProductOrderMutation();
+
+  const handleUpdateProductOrder = useCallback((documentId: string, amount: number) => {
+    updateProductOrder({ id: documentId, amount });
+  }, []);
 
   const handleCreateProductOrder = useCallback(
     (payload: Omit<CreateProductOrderPayload, 'order' | 'amount'>) => {
@@ -57,6 +67,14 @@ const useCart = () => {
     [data[0]],
   );
 
+  const handleDeleteProductOrder = useCallback((documentId: string) => {
+    deleteProductOrder(documentId);
+  }, []);
+
+  const handleUpdateOrder = useCallback((payload: { address: string; total: number; documentId: string }) => {
+    updateOrder({ ...payload, orderStatus: OrderStatusEnum.PROCESS });
+  }, []);
+
   useEffect(() => {
     if (isSuccess && data.length === 0 && user?.id) {
       createOrder({
@@ -66,10 +84,10 @@ const useCart = () => {
   }, [isSuccess, user?.id, data.length]);
 
   useEffect(() => {
-    if (isCreated || isUpdatedProductOrder) {
+    if (isCreated || isUpdatedProductOrder || isDeletedProductOrder) {
       refetch();
     }
-  }, [isCreated, isUpdatedProductOrder]);
+  }, [isCreated, isUpdatedProductOrder, isDeletedProductOrder]);
 
   useEffect(() => {
     if (isCreatedProductOrder) {
@@ -77,13 +95,41 @@ const useCart = () => {
     }
   }, [isCreatedProductOrder]);
 
+  useEffect(() => {
+    if (isUpdated) {
+      refetch();
+    }
+  }, [isUpdated]);
+
   return useMemo(
     () => ({
       cart: data[0],
-      isLoading: isLoading || isFetching || isCreating || isCreatingProductOrder || isUpdatingProductOrder,
+      cartItemCount: data[0]?.productOrders.length,
+      isUpdated,
+      isLoading:
+        isLoading ||
+        isFetching ||
+        isCreating ||
+        isCreatingProductOrder ||
+        isUpdatingProductOrder ||
+        isUpdating ||
+        isDeletingProductOrder,
       handleCreateProductOrder,
+      handleUpdateOrder,
+      handleDeleteProductOrder,
+      handleUpdateProductOrder,
     }),
-    [data, isLoading, isFetching, isCreating, isCreatingProductOrder, handleCreateProductOrder],
+    [
+      data,
+      isLoading,
+      isFetching,
+      isCreating,
+      isCreatingProductOrder,
+      handleCreateProductOrder,
+      handleUpdateOrder,
+      handleUpdateProductOrder,
+      handleDeleteProductOrder,
+    ],
   );
 };
 

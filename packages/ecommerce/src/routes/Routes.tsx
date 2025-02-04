@@ -17,6 +17,7 @@ const ResetPassword = lazy(() => import('@/pages/auth/reset-password'));
 const Profile = lazy(() => import('@/pages/auth/profile'));
 const ShippingAddress = lazy(() => import('@/pages/auth/profile/shipping-address'));
 const Order = lazy(() => import('@/pages/auth/profile/order'));
+const Cart = lazy(() => import('@/pages/auth/profile/cart'));
 
 const Collection = lazy(() => import('@/pages/collection'));
 const Category = lazy(() => import('@/pages/category'));
@@ -42,6 +43,7 @@ const AllRoutes = () => {
           <Route path='/profile' element={<LoadComponent component={Profile} />} />
           <Route path='/shipping-address' element={<LoadComponent component={ShippingAddress} />} />
           <Route path='/order' element={<LoadComponent component={Order} />} />
+          <Route path='/cart' element={<LoadComponent component={Cart} />} />
         </Route>
         <Route path='*' element={<LoadComponent component={NotFound} />} />
       </Route>

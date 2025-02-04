@@ -6,6 +6,8 @@ import { DataTable } from '../DataTable';
 import ProductCell from './ProductCell';
 import ProductVariantCell from './ProductVariantCell';
 import { formattedNumber } from '@/utils';
+import ProductActionCell from './ProductActionCell';
+import ProductAmountCell from './ProductAmountCell';
 
 type Props = {
   productOrders?: IProductOrder[];
@@ -34,7 +36,7 @@ const ProductOrderCart = ({ productOrders = [] }: Props) => {
       },
       {
         header: 'Amount',
-        accessorKey: 'amount',
+        cell: ProductAmountCell,
         meta: {
           align: 'center',
         },
@@ -45,6 +47,10 @@ const ProductOrderCart = ({ productOrders = [] }: Props) => {
         meta: {
           align: 'center',
         },
+      },
+      {
+        header: 'Action',
+        cell: ProductActionCell,
       },
     ],
     [],

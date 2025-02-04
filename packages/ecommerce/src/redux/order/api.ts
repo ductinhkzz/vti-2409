@@ -27,6 +27,15 @@ export const orderApi = authBaseApi.injectEndpoints({
         },
       }),
     }),
+    updateOrder: builder.mutation<IOrder, Partial<Omit<IOrder, 'user' | 'address'>> & { user?: number, address?: string, documentId: string }>({
+      query: ({ documentId, ...order }) => ({
+        url: `orders/${documentId}`,
+        method: 'PUT',
+        body: {
+          data: order,
+        },
+      }),
+    }),
     createProductOrder: builder.mutation<IProductOrder, CreateProductOrderPayload>({
       query: (order) => ({
         url: 'product-orders',
@@ -45,6 +54,12 @@ export const orderApi = authBaseApi.injectEndpoints({
         },
       }),
     }),
+    deleteProductOrder: builder.mutation<IProductOrder, string>({
+      query: (documentId) => ({
+        url: `product-orders/${documentId}`,
+        method: 'DELETE',
+      }),
+    }),
   }),
 });
 
@@ -52,6 +67,8 @@ export const {
   useGetOrderQuery,
   useGetOrdersQuery,
   useCreateOrderMutation,
+  useUpdateOrderMutation,
   useCreateProductOrderMutation,
   useUpdateProductOrderMutation,
+  useDeleteProductOrderMutation,
 } = orderApi;

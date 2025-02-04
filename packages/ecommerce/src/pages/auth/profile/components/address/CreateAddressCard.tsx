@@ -6,7 +6,7 @@ import { CreateOrUpdateAddress } from './CreateOrUpdateAddress';
 const CreateAddressCard = () => {
   return (
     <CreateOrUpdateAddress>
-      <Card className='hover:cursor-pointer min-h-40'>
+      <Card className='hover:cursor-pointer hover:bg-accent min-h-40'>
         <CardHeader className='p-4'>
           <CardTitle className='flex gap-2'>
             New address

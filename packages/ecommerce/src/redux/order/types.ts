@@ -3,8 +3,15 @@ import { IUser } from '../auth';
 import { IProduct, IProductVariant } from '../product';
 import { IBase } from '../types';
 
+export enum OrderStatusEnum {
+  DRAFT = 'DRAFT',
+  PROCESS = 'PROCESS',
+  DELIVERY = 'DELIVERY',
+  DONE = 'DONE'
+}
+
 export interface IOrder extends IBase {
-  orderStatus: string;
+  orderStatus: OrderStatusEnum;
   user: IUser;
   total: number;
   address: IAddress;

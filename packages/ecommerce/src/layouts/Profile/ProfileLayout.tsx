@@ -24,7 +24,7 @@ const ProfileLayout = () => {
             <aside className='lg:w-1/5'>
               <Sidebar />
             </aside>
-            <div className='flex-1 lg:max-w-2xl'>
+            <div className='flex-1 lg:max-w-3xl'>
               <Outlet />
             </div>
           </CardContent>

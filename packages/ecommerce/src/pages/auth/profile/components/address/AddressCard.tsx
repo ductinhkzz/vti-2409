@@ -7,12 +7,13 @@ import DeleteAddress from './DeleteAddress';
 
 type Props = {
   address: IAddress;
+  className?: string;
 };
 
-const AddressCard = ({ address }: Props) => {
+const AddressCard = ({ address, className }: Props) => {
   const { firstName, lastName, address1, address2, postalCode, city, province, country, phone, company } = address;
   return (
-    <Card>
+    <Card className={className}>
       <CardHeader className='p-4'>
         <CardTitle>
           {firstName} {lastName}

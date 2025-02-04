@@ -25,14 +25,17 @@
       "target": "plugin::users-permissions.user",
       "inversedBy": "orders"
     },
-    "address": {
-      "type": "json"
-    },
     "productOrders": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::product-order.product-order",
       "mappedBy": "order"
+    },
+    "address": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::address.address",
+      "inversedBy": "orders"
     }
   }
 }
