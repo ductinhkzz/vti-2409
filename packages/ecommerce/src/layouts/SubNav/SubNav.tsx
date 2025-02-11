@@ -21,7 +21,8 @@ const SubNav = () => {
                 {cartItemCount > 0 && (
                   <Badge
                     variant='outline'
-                    className='absolute -top-1 -right-1 flex justify-center items-center p-0 bg-white text-black w-4 h-4 text-xs'>
+                    className='absolute -top-1 -right-1 flex justify-center items-center p-0 bg-white text-black w-4 h-4 text-xs'
+                  >
                     {cartItemCount}
                   </Badge>
                 )}

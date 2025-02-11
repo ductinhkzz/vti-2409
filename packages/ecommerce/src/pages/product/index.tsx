@@ -14,10 +14,28 @@ const Product = () => {
   const { user } = useUser();
   const { handleCreateProductOrder } = useCart();
 
-  const { data, isLoading, isFetching } = useGetProductQuery(id, {
-    skip: !id,
-    refetchOnMountOrArgChange: true,
-  });
+  const { data, isLoading, isFetching } = useGetProductQuery(
+    {
+      filters: {
+        $or: [
+          {
+            documentId: {
+              $eq: id,
+            },
+          },
+          {
+            slug: {
+              $containsi: id,
+            },
+          },
+        ],
+      },
+    },
+    {
+      skip: !id,
+      refetchOnMountOrArgChange: true,
+    },
+  );
 
   const onSelect = ({ variants }: SelectVariantSchemaType) => {
     const q = stringify({ redirect: `${location.pathname}${location.search}` });
@@ -34,8 +52,8 @@ const Product = () => {
     );
     if (!matchProductVariant) return;
     handleCreateProductOrder({
-      product: data.id,
-      productVariant: matchProductVariant.id,
+      product: data.documentId,
+      productVariant: matchProductVariant.documentId,
     });
   };
 

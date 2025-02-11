@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "lerna run dev",
-    "format": "lerna run format --scope=ecommerce"
+    "format": "lerna run format --scope=ecommerce",
+    "lint": "lerna run lint --scope=ecommerce",
+    "prepare": "husky"
   },
   "keywords": [],
   "author": "Duc Tinh Le",
@@ -16,7 +18,7 @@
   },
   "type": "module",
   "devDependencies": {
+    "husky": "^9.1.7",
     "lerna": "^8.1.9"
-  },
-  "dependencies": {}
+  }
 }

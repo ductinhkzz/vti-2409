@@ -1,5 +1,4 @@
 import {
-  CreateProductOrderPayload,
   OrderStatusEnum,
   useCreateOrderMutation,
   useCreateProductOrderMutation,
@@ -14,7 +13,7 @@ import { useCallback, useEffect, useMemo } from 'react';
 const useCart = () => {
   const { user } = useUser();
   const {
-    data = [],
+    data: orderData,
     isLoading,
     isFetching,
     isSuccess,
@@ -33,8 +32,11 @@ const useCart = () => {
     },
     {
       skip: !user,
+      refetchOnMountOrArgChange: true,
     },
   );
+
+  const data = orderData?.data ?? [];
 
   const [createOrder, { isLoading: isCreating, isSuccess: isCreated }] = useCreateOrderMutation();
   const [updateOrder, { isLoading: isUpdating, isSuccess: isUpdated }] = useUpdateOrderMutation();
@@ -50,11 +52,11 @@ const useCart = () => {
   }, []);
 
   const handleCreateProductOrder = useCallback(
-    (payload: Omit<CreateProductOrderPayload, 'order' | 'amount'>) => {
+    ({ product, productVariant }: { product: string; productVariant: string }) => {
       if (!data[0]) return;
 
       const existProductOrder = data[0].productOrders.find(
-        (p) => p.product.id === payload.product && p.productVariant.id === payload.productVariant,
+        (p) => p.product.documentId === product && p.productVariant.documentId === productVariant,
       );
 
       if (existProductOrder) {
@@ -62,7 +64,14 @@ const useCart = () => {
         return;
       }
 
-      createProductOrder({ ...payload, order: data[0].id, amount: 1 });
+      createProductOrder({
+        productVariant: { connect: [productVariant] },
+        order: { connect: [data[0].documentId] },
+        amount: 1,
+        product: {
+          connect: [product],
+        },
+      });
     },
     [data[0]],
   );
@@ -76,12 +85,12 @@ const useCart = () => {
   }, []);
 
   useEffect(() => {
-    if (isSuccess && data.length === 0 && user?.id) {
+    if (!data[0]?.documentId && user?.id && isSuccess) {
       createOrder({
         user: user?.id,
       });
     }
-  }, [isSuccess, user?.id, data.length]);
+  }, [user?.documentId, data[0]?.documentId, isSuccess]);
 
   useEffect(() => {
     if (isCreated || isUpdatedProductOrder || isDeletedProductOrder) {
@@ -103,6 +112,7 @@ const useCart = () => {
 
   return useMemo(
     () => ({
+      orders: data,
       cart: data[0],
       cartItemCount: data[0]?.productOrders.length,
       isUpdated,

@@ -103,6 +103,9 @@
       "relation": "oneToMany",
       "target": "api::product-order.product-order",
       "mappedBy": "product"
+    },
+    "slug": {
+      "type": "string"
     }
   }
 }

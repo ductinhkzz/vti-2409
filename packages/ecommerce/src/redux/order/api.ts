@@ -1,16 +1,15 @@
 import { authBaseApi } from '../authBaseApi';
-import { GetDocumentType } from '../types';
+import { GetDocumentType, PageDataType } from '../types';
 import { CreateProductOrderPayload, IOrder, IProductOrder } from './types';
 
 export const orderApi = authBaseApi.injectEndpoints({
   endpoints: (builder) => ({
-    getOrders: builder.query<IOrder[], GetDocumentType<IOrder>>({
+    getOrders: builder.query<PageDataType<IOrder>, GetDocumentType<IOrder>>({
       query: (args) => ({
         url: `orders`,
         method: 'GET',
         params: { ...args },
       }),
-      transformResponse: (response: { data: IOrder[] }) => response.data,
     }),
     getOrder: builder.query<IOrder, number>({
       query: (id) => ({
@@ -27,7 +26,10 @@ export const orderApi = authBaseApi.injectEndpoints({
         },
       }),
     }),
-    updateOrder: builder.mutation<IOrder, Partial<Omit<IOrder, 'user' | 'address'>> & { user?: number, address?: string, documentId: string }>({
+    updateOrder: builder.mutation<
+      IOrder,
+      Partial<Omit<IOrder, 'user' | 'address'>> & { user?: number; address?: string; documentId: string }
+    >({
       query: ({ documentId, ...order }) => ({
         url: `orders/${documentId}`,
         method: 'PUT',

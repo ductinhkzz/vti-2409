@@ -36,7 +36,8 @@ export const Sidebar = ({ className, ...props }: React.HTMLAttributes<HTMLElemen
             buttonVariants({ variant: 'ghost' }),
             pathname === item.href ? 'bg-muted hover:bg-muted' : 'hover:bg-transparent hover:underline',
             'justify-start',
-          )}>
+          )}
+        >
           {item.title}
         </Link>
       ))}

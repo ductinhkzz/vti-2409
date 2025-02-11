@@ -32,7 +32,8 @@ const Checkout = ({ onChange, val }: Props) => {
             />
             <Label
               htmlFor={address.documentId}
-              className='flex flex-col rounded-md border-2 border-muted bg-transparent hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary'>
+              className='flex flex-col rounded-md border-2 border-muted bg-transparent hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary'
+            >
               <AddressCard address={address} className='shadow-none border-0 bg-transparent' />
             </Label>
           </div>

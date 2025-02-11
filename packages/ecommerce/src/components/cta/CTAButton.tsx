@@ -31,7 +31,8 @@ const CTAButton = ({ data, type = 'secondary', useCurrentColor, component, class
           useCurrentColor && 'border-gray-700 dark:border-white',
           className,
         )}
-        asChild>
+        asChild
+      >
         <Comp to={data.url} target={data.target}>
           {data.title}
         </Comp>
@@ -48,7 +49,8 @@ const CTAButton = ({ data, type = 'secondary', useCurrentColor, component, class
         !useCurrentColor && 'text-white',
         className,
       )}
-      asChild>
+      asChild
+    >
       <Comp to={data.url} target={data.target}>
         {data.title}
         <CircleChevronRight />

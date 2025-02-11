@@ -7,7 +7,7 @@ export enum OrderStatusEnum {
   DRAFT = 'DRAFT',
   PROCESS = 'PROCESS',
   DELIVERY = 'DELIVERY',
-  DONE = 'DONE'
+  DONE = 'DONE',
 }
 
 export interface IOrder extends IBase {
@@ -25,9 +25,13 @@ export interface IProductOrder extends IBase {
   order: IOrder;
 }
 
+type UpdateRelationType = {
+  connect: string[];
+};
+
 export type CreateProductOrderPayload = {
-  product: number;
-  productVariant: number;
+  product: UpdateRelationType;
+  productVariant: UpdateRelationType;
   amount: number;
-  order: number;
+  order: UpdateRelationType;
 };

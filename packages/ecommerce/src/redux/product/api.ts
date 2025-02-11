@@ -1,6 +1,7 @@
 import { getBlockPopulate } from '@/utils';
 import { api } from '../api';
 import { IProduct } from './types';
+import { GetDocumentType } from '../types';
 
 const productPopulate = [
   'images',
@@ -15,18 +16,19 @@ const productPopulate = [
 
 export const productApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    getProduct: builder.query<IProduct, string>({
-      query(id) {
+    getProduct: builder.query<IProduct, GetDocumentType<IProduct>>({
+      query(args) {
         return {
-          url: `products/${id}`,
+          url: `products`,
           method: 'GET',
           params: {
-            populate: productPopulate
-          }
+            populate: productPopulate,
+            ...args,
+          },
         };
       },
-      transformResponse: (response: { data: IProduct }) => {
-        return response.data;
+      transformResponse: (response: { data: IProduct[] }) => {
+        return response.data[0];
       },
     }),
   }),

@@ -23,4 +23,4 @@ export const addressSchema = object({
   address2: string().optional().nullable(),
 });
 
-export type AddressSchemaType = TypeOf<typeof addressSchema>
+export type AddressSchemaType = TypeOf<typeof addressSchema>;

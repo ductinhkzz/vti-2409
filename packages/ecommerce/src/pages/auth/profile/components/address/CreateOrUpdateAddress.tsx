@@ -132,7 +132,8 @@ const CreateOrUpdateAddress = ({ type = 'create', children, address }: Props) =>
               type='submit'
               size='sm'
               isLoading={isLoading || isEditLoading}
-              disabled={!isDirty || !isValid}>
+              disabled={!isDirty || !isValid}
+            >
               {isCreate ? 'Create' : 'Save'}
             </ButtonLoading>
             <Button size='sm' variant='outline' onClick={() => reset()} disabled={!isDirty}>

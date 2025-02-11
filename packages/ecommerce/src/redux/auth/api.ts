@@ -37,8 +37,8 @@ export const authApi = authBaseApi.injectEndpoints({
           url: '/users/me',
           method: 'GET',
           params: {
-            populate: ['avatar']
-          }
+            populate: ['avatar'],
+          },
         };
       },
       providesTags: (u) => [{ type: 'Profile', id: u?.documentId }],

@@ -867,6 +867,7 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
       'api::product-variant.product-variant'
     >;
     publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.String;
     thumbnail: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

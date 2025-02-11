@@ -4,6 +4,8 @@ import * as React from 'react';
 import {
   ColumnDef,
   ColumnFiltersState,
+  OnChangeFn,
+  PaginationState,
   SortingState,
   VisibilityState,
   flexRender,
@@ -26,6 +28,8 @@ interface DataTableProps<TData, TValue> {
   data: TData[];
   showToolbar?: boolean;
   showPagination?: boolean;
+  pagination?: PaginationState;
+  onPaginationChange?: OnChangeFn<PaginationState>;
 }
 
 export const DataTable = <TData extends object, TValue>({
@@ -33,6 +37,8 @@ export const DataTable = <TData extends object, TValue>({
   data,
   showToolbar,
   showPagination,
+  pagination,
+  onPaginationChange,
 }: DataTableProps<TData, TValue>) => {
   const [rowSelection, setRowSelection] = React.useState({});
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
@@ -47,8 +53,10 @@ export const DataTable = <TData extends object, TValue>({
       columnVisibility,
       rowSelection,
       columnFilters,
+      pagination,
     },
     enableRowSelection: true,
+    onPaginationChange,
     onRowSelectionChange: setRowSelection,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
@@ -62,9 +70,9 @@ export const DataTable = <TData extends object, TValue>({
   });
 
   return (
-    <div className='space-y-4'>
+    <div>
       {showToolbar && <DataTableToolbar table={table} />}
-      <div className='rounded-md border'>
+      <div className={cn('rounded-md border', showPagination && 'rounded-b-none')}>
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -74,7 +82,8 @@ export const DataTable = <TData extends object, TValue>({
                     <TableHead
                       key={header.id}
                       colSpan={header.colSpan}
-                      className={cn('text-center', header.column.columnDef.meta?.className)}>
+                      className={cn('text-center', header.column.columnDef.meta?.className)}
+                    >
                       {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
                     </TableHead>
                   );

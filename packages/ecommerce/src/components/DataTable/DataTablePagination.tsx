@@ -9,7 +9,7 @@ interface DataTablePaginationProps<TData> {
 
 export const DataTablePagination = <TData extends object>({ table }: DataTablePaginationProps<TData>) => {
   return (
-    <div className='flex items-center justify-between px-2'>
+    <div className='flex items-center justify-between p-2 border rounded-b border-t-0'>
       <div className='flex w-full'>
         <div className='flex items-center space-x-2'>
           <p className='text-sm font-medium'>Rows per page</p>
@@ -17,8 +17,9 @@ export const DataTablePagination = <TData extends object>({ table }: DataTablePa
             value={`${table.getState().pagination.pageSize}`}
             onValueChange={(value) => {
               table.setPageSize(Number(value));
-            }}>
-            <SelectTrigger className='h-8 w-[70px]'>
+            }}
+          >
+            <SelectTrigger className='h-8 w-[4rem]'>
               <SelectValue placeholder={table.getState().pagination.pageSize} />
             </SelectTrigger>
             <SelectContent side='top'>
@@ -38,7 +39,8 @@ export const DataTablePagination = <TData extends object>({ table }: DataTablePa
             variant='outline'
             className='hidden h-8 w-8 p-0 lg:flex'
             onClick={() => table.setPageIndex(0)}
-            disabled={!table.getCanPreviousPage()}>
+            disabled={!table.getCanPreviousPage()}
+          >
             <span className='sr-only'>Go to first page</span>
             <ChevronsLeft />
           </Button>
@@ -46,7 +48,8 @@ export const DataTablePagination = <TData extends object>({ table }: DataTablePa
             variant='outline'
             className='h-8 w-8 p-0'
             onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}>
+            disabled={!table.getCanPreviousPage()}
+          >
             <span className='sr-only'>Go to previous page</span>
             <ChevronLeft />
           </Button>
@@ -54,7 +57,8 @@ export const DataTablePagination = <TData extends object>({ table }: DataTablePa
             variant='outline'
             className='h-8 w-8 p-0'
             onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}>
+            disabled={!table.getCanNextPage()}
+          >
             <span className='sr-only'>Go to next page</span>
             <ChevronRight />
           </Button>
@@ -62,7 +66,8 @@ export const DataTablePagination = <TData extends object>({ table }: DataTablePa
             variant='outline'
             className='hidden h-8 w-8 p-0 lg:flex'
             onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-            disabled={!table.getCanNextPage()}>
+            disabled={!table.getCanNextPage()}
+          >
             <span className='sr-only'>Go to last page</span>
             <ChevronsRight />
           </Button>

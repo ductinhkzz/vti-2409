@@ -10,14 +10,14 @@ import {
 } from '@/components';
 import { IMedia } from '@/redux/types';
 type Props = {
-  images?: IMedia[];
+  images?: IMedia[] | null;
 };
 
-const Images = ({ images = [] }: Props) => {
+const Images = ({ images }: Props) => {
   return (
     <Carousel className='w-full my-8'>
       <CarouselContent>
-        {images.map((image) => (
+        {(images ?? []).map((image) => (
           <CarouselItem key={image.id} className='basis-auto'>
             <Card>
               <CardContent className='p-0'>

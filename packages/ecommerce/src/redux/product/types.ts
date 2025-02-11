@@ -6,15 +6,16 @@ export interface IAttribute extends IBase {
 
 export interface IVariant extends IBase {
   name: string;
-  attributes: IAttribute[]
+  attributes: IAttribute[];
 }
 
 export interface IProductVariant extends IBase {
   price: number;
-  attributes: IAttribute[]
+  attributes: IAttribute[];
 }
 
 export interface IProduct extends IBase {
+  slug: string | null;
   name: string;
   price: number;
   description: string | null;
@@ -29,5 +30,5 @@ export interface IProduct extends IBase {
   features: string | null;
   dimensions: string | null;
   productVariants: IProductVariant[];
-  variants: IVariant[]
+  variants: IVariant[];
 }

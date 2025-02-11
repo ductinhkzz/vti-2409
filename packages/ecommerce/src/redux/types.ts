@@ -87,14 +87,42 @@ export interface ICollection extends ICategory {
   categories: ICategory[];
 }
 
+export type OrFilterType<T> = {
+  $or?: { [key in keyof T]?: any }[];
+};
+
 export type FilterType<T> = {
   filters?: {
-    [key in keyof T]?: { [key in '$eq' | '$in']?: any }
-  };
+    [key in keyof T]?: { [key in '$eq' | '$in' | '$ne']?: any };
+  } & OrFilterType<T>;
+  sort?: string[];
 };
 
 export type PopulateType = {
   populate?: string[] | Record<string, any>;
 };
 
-export type GetDocumentType<T> = FilterType<T> & PopulateType;
+export type PaginationQueryType = {
+  pagination?: {
+    page: number;
+    pageSize: number;
+  };
+};
+
+export type GetDocumentType<T> = FilterType<T> & PopulateType & PaginationQueryType;
+
+export type PaginationType = {
+  page: number;
+  pageCount: number;
+  pageSize: number;
+  total: number;
+};
+
+export type MetaDataType = {
+  pagination: PaginationType;
+};
+
+export type PageDataType<T> = {
+  data: T[];
+  meta: MetaDataType;
+};
